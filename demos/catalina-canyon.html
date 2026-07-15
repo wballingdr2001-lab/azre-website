@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalina Canyon Residences — Apartments at the Mouth of the Canyon, Tucson</title>
+  <meta name="description" content="Catalina Canyon Residences: 96 one-, two-, and three-bedroom apartments where north Tucson meets the trailhead. Canyon views, morning shade, evening quiet.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sandrose: #f2e4da;
+      --sandrose-2: #ead6c7;
+      --rust: #a04226;
+      --rust-deep: #813319;
+      --brown: #3b2c24;
+      --brown-2: #7c675a;
+      --gold: #c99a4b;
+      --line: #ddc7b6;
+      --serif: "Lora", Georgia, serif;
+      --sans: "Work Sans", "Helvetica Neue", sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 1.04rem;
+      font-weight: 320;
+      line-height: 1.72;
+      color: var(--brown);
+      background: var(--sandrose);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--rust); }
+    :focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
+
+    .wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.14; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.3rem;
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--gold); }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--rust);
+      transition: all 0.2s var(--ease);
+    }
+    .btn--fill { background: var(--rust); color: var(--sandrose); }
+    .btn--fill:hover { background: var(--rust-deep); border-color: var(--rust-deep); }
+    .btn--ghost { color: var(--rust); }
+    .btn--ghost:hover { background: var(--rust); color: var(--sandrose); }
+
+    /* header */
+    header { border-bottom: 1px solid var(--line); background: var(--sandrose); position: sticky; top: 0; z-index: 40; }
+    .bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.05rem; }
+    .logo { text-decoration: none; color: var(--brown); font-family: var(--serif); font-size: 1.2rem; line-height: 1.15; }
+    .logo strong { display: block; letter-spacing: 0.04em; }
+    .logo span { font-size: 0.72rem; font-family: var(--sans); letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); }
+    nav.links { display: flex; gap: 1.7rem; }
+    nav.links a { font-size: 0.84rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--brown-2); text-decoration: none; }
+    nav.links a:hover { color: var(--rust); }
+    .bar .btn { padding: 0.6rem 1.2rem; }
+
+    /* split hero */
+    .hero { border-bottom: 1px solid var(--line); }
+    .hero .wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      padding-block: clamp(3rem, 7vw, 5.5rem);
+    }
+    .hero h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); }
+    .hero h1 em { color: var(--rust); }
+    .hero p.lede { margin-top: 1.2rem; font-size: 1.13rem; color: var(--brown-2); max-width: 44ch; }
+    .hero__ctas { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .hero__photo { position: relative; }
+    .hero__photo img {
+      width: 100%; height: clamp(360px, 46vw, 560px);
+      object-fit: cover; object-position: center 30%;
+      filter: saturate(1.08) contrast(1.02);
+    }
+    .hero__photo::after {
+      content: "";
+      position: absolute; inset: auto -14px -14px auto;
+      width: 62%; height: 62%;
+      border: 2px solid var(--gold);
+      z-index: -1;
+      transform: translate(0, 0);
+    }
+    .hero__badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--brown); color: var(--sandrose);
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+    }
+
+    section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+    .section-head { max-width: 640px; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+    .section-head h2 { font-size: clamp(1.8rem, 3.8vw, 2.8rem); }
+    .section-head p { margin-top: 0.9rem; color: var(--brown-2); }
+
+    /* amenity bands */
+    .bands { display: grid; gap: 0; border-block: 1px solid var(--line); }
+    .band {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 2fr);
+      gap: 1.5rem;
+      align-items: baseline;
+      padding-block: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .band:last-child { border-bottom: none; }
+    .band h3 { font-size: 1.35rem; }
+    .band p { color: var(--brown-2); font-size: 0.99rem; }
+    .band .tag { justify-self: end; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+
+    /* floor plans — ledger rows */
+    .plans { background: var(--sandrose-2); border-block: 1px solid var(--line); }
+    .ledger { border-top: 2px solid var(--brown); }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr) auto;
+      gap: 1.25rem;
+      align-items: center;
+      padding-block: 1.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .ledger-row h3 { font-size: 1.3rem; }
+    .ledger-row .spec { color: var(--brown-2); font-size: 0.95rem; }
+    .ledger-row .rent { font-family: var(--serif); font-size: 1.2rem; color: var(--rust); }
+    .ledger-row .btn { padding: 0.55rem 1.1rem; font-size: 0.76rem; white-space: nowrap; }
+    .ledger-row svg { width: 120px; height: auto; justify-self: end; }
+
+    /* quote */
+    .quote { text-align: center; }
+    .quote blockquote { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); max-width: 24ch; margin-inline: auto; line-height: 1.4; }
+    .quote cite { display: block; margin-top: 1.2rem; font-style: normal; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brown-2); }
+
+    /* gallery */
+    .gal { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0.9rem; }
+    .gal figure { overflow: hidden; position: relative; }
+    .gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .gal figure:hover img { transform: scale(1.035); }
+    .gal .big { grid-column: span 7; height: 380px; }
+    .gal .tall { grid-column: span 5; height: 380px; }
+    .gal .third { grid-column: span 4; height: 220px; }
+    .gal .g1 img { filter: sepia(0.18) saturate(1.12); }
+    .gal .g2 img { filter: hue-rotate(-6deg) contrast(1.03); }
+    .gal figcaption {
+      position: absolute; left: 0.9rem; bottom: 0.7rem;
+      font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    }
+
+    /* neighborhood + map */
+    .near { background: var(--brown); color: var(--sandrose); }
+    .near .kicker { color: var(--gold); }
+    .near .kicker::before { background: var(--gold); }
+    .near .section-head h2 { color: var(--sandrose); }
+    .near-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+    .near ul { list-style: none; }
+    .near li { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.8rem; border-bottom: 1px solid rgba(242, 228, 218, 0.18); }
+    .near li span:last-child { color: var(--gold); white-space: nowrap; }
+    .map-ph {
+      border: 1px solid rgba(242, 228, 218, 0.25);
+      background:
+        repeating-linear-gradient(0deg, transparent 0 42px, rgba(242,228,218,0.07) 42px 43px),
+        repeating-linear-gradient(90deg, transparent 0 42px, rgba(242,228,218,0.07) 42px 43px),
+        #33261f;
+      min-height: 320px;
+      position: relative;
+    }
+    .map-pin { position: absolute; top: 42%; left: 48%; transform: translate(-50%, -100%); text-align: center; }
+    .map-pin svg { width: 34px; height: 34px; fill: var(--gold); }
+    .map-pin span { display: block; margin-top: 0.2rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; background: var(--sandrose); color: var(--brown); padding: 0.25rem 0.55rem; }
+    .map-note { position: absolute; bottom: 0.8rem; left: 0.9rem; font-size: 0.75rem; color: rgba(242,228,218,0.55); }
+
+    /* tour */
+    .tour-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 4.5rem); align-items: start; }
+    .tour form { display: grid; gap: 1.1rem; border: 1px solid var(--line); background: #fff; padding: clamp(1.5rem, 3.5vw, 2.5rem); }
+    .tour label { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+    .tour input, .tour select, .tour textarea {
+      width: 100%; padding: 0.8rem 0.95rem; font: inherit; color: var(--brown);
+      background: var(--sandrose); border: 1px solid var(--line);
+    }
+    .tour textarea { min-height: 92px; resize: vertical; }
+    .tour button.btn { border: 1.5px solid var(--rust); cursor: pointer; justify-self: start; }
+    .tour-confirm { font-size: 0.95rem; color: var(--rust); display: none; }
+    .tour-confirm.show { display: block; }
+    .tour-side h3 { font-size: 1.5rem; }
+    .tour-side p { margin-top: 0.8rem; color: var(--brown-2); }
+    .tour-side .apply {
+      margin-top: 1.8rem; padding: 1.5rem;
+      background: var(--sandrose-2); border: 1px solid var(--line);
+    }
+    .tour-side .apply h4 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.4rem; }
+    .tour-side .apply p { font-size: 0.95rem; margin-top: 0; }
+    .tour-side .apply .btn { margin-top: 1rem; }
+
+    footer { border-top: 1px solid var(--line); padding-block: 2.5rem; font-size: 0.9rem; color: var(--brown-2); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+    .demo-note { max-width: 62ch; }
+    .demo-note strong { color: var(--brown); }
+
+    @media (max-width: 940px) {
+      nav.links { display: none; }
+      .hero .wrap { grid-template-columns: 1fr; }
+      .band { grid-template-columns: 1fr; gap: 0.3rem; }
+      .band .tag { justify-self: start; }
+      .ledger-row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.4rem; }
+      .ledger-row svg { display: none; }
+      .near-grid, .tour-grid { grid-template-columns: 1fr; }
+      .gal .big, .gal .tall { grid-column: span 12; height: 300px; }
+      .gal .third { grid-column: span 12; height: 220px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap bar">
+      <a class="logo" href="#top">
+        <strong>Catalina Canyon</strong>
+        <span>Residences</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#living">Living</a>
+        <a href="#plans">Floor Plans</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#location">Location</a>
+      </nav>
+      <a class="btn btn--fill" href="#tour">Schedule a Tour</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <div class="hero">
+      <div class="wrap">
+        <div>
+          <span class="kicker">North Tucson · At the trailhead</span>
+          <h1>Where the pavement ends, <em>home begins.</em></h1>
+          <p class="lede">
+            Ninety-six residences set at the mouth of the canyon — morning
+            shade off the ridge, saguaro silence at night, and a trailhead
+            you can reach before your coffee cools.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--fill" href="#tour">Schedule a Tour</a>
+            <a class="btn btn--ghost" href="#tour">Apply Now</a>
+          </div>
+        </div>
+        <div class="hero__photo">
+          <span class="hero__badge">Now leasing · Fall move-ins</span>
+          <img src="../assets/img/ridge-goldenhour.jpg" alt="Ridgeline above the community at golden hour" width="1280" height="853">
+        </div>
+      </div>
+    </div>
+
+    <section id="living">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Canyon living</span>
+          <h2>The amenity list starts outside your window.</h2>
+        </div>
+        <div class="bands">
+          <div class="band">
+            <h3>Ridgeline pool</h3>
+            <p>A quiet lap pool aimed straight at the Catalinas, with chilled towels in June and a fire table for December evenings.</p>
+            <span class="tag">Resort</span>
+          </div>
+          <div class="band">
+            <h3>Trailhead access</h3>
+            <p>A private gate opens onto the canyon wash trail — four miles of saguaro forest before the first sound of traffic.</p>
+            <span class="tag">Outdoors</span>
+          </div>
+          <div class="band">
+            <h3>Canyon gym &amp; yoga deck</h3>
+            <p>Full strength floor inside, shaded flow deck outside. Sunrise classes on Saturdays, led by residents who mean it.</p>
+            <span class="tag">Wellness</span>
+          </div>
+          <div class="band">
+            <h3>Gear room</h3>
+            <p>Bike racks, board storage, a repair bench with real tools, and a boot-wash by the door. The desert comes home with you.</p>
+            <span class="tag">Practical</span>
+          </div>
+          <div class="band">
+            <h3>Covered parking &amp; EV charging</h3>
+            <p>Shaded spaces standard, chargers in every row — because a canyon address shouldn't cost you a hot steering wheel.</p>
+            <span class="tag">Everyday</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="plans" id="plans">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Floor plans</span>
+          <h2>Four plans, one view policy: everyone gets mountains.</h2>
+          <p>Nine-foot ceilings, gas ranges, and patios deep enough for two chairs and a telescope.</p>
+        </div>
+        <div class="ledger">
+          <div class="ledger-row">
+            <div>
+              <h3>Wash</h3>
+              <p class="spec">1 bed · 1 bath</p>
+            </div>
+            <span class="spec">701 sq ft</span>
+            <span class="spec">Patio · 84 sq ft</span>
+            <span class="rent">From $1,285</span>
+            <a class="btn btn--ghost" href="#tour">Tour this plan</a>
+          </div>
+          <div class="ledger-row">
+            <div>
+              <h3>Saddle</h3>
+              <p class="spec">2 bed · 2 bath</p>
+            </div>
+            <span class="spec">988 sq ft</span>
+            <span class="spec">Patio · 96 sq ft</span>
+            <span class="rent">From $1,640</span>
+            <a class="btn btn--ghost" href="#tour">Tour this plan</a>
+          </div>
+          <div class="ledger-row">
+            <div>
+              <h3>Ridge</h3>
+              <p class="spec">2 bed + den · 2 bath</p>
+            </div>
+            <span class="spec">1,124 sq ft</span>
+            <span class="spec">Balcony · 110 sq ft</span>
+            <span class="rent">From $1,890</span>
+            <a class="btn btn--ghost" href="#tour">Tour this plan</a>
+          </div>
+          <div class="ledger-row">
+            <div>
+              <h3>Summit</h3>
+              <p class="spec">3 bed · 2 bath</p>
+            </div>
+            <span class="spec">1,342 sq ft</span>
+            <span class="spec">Corner patio · 140 sq ft</span>
+            <span class="rent">From $2,180</span>
+            <a class="btn btn--ghost" href="#tour">Tour this plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="wrap">
+        <blockquote>
+          &ldquo;We toured at sunset. We signed before we got back to the car.&rdquo;
+        </blockquote>
+        <cite>Resident review · Building two</cite>
+      </div>
+    </section>
+
+    <section id="gallery" style="padding-top: 0">
+      <div class="wrap">
+        <div class="gal">
+          <figure class="big">
+            <img src="../assets/img/ridge-goldenhour.jpg" alt="The ridge above the community, late light" loading="lazy">
+            <figcaption>The ridge at seven</figcaption>
+          </figure>
+          <figure class="tall g1">
+            <img src="../assets/img/foothills-goldenhour.jpg" alt="Foothills homes catching golden hour" loading="lazy">
+            <figcaption>Golden hour, building four</figcaption>
+          </figure>
+          <figure class="third g2">
+            <img src="../assets/img/sonoran-path.jpg" alt="Desert trail beginning at the community gate" loading="lazy">
+            <figcaption>The wash trail</figcaption>
+          </figure>
+          <figure class="third">
+            <img src="../assets/img/foothills-community.jpg" alt="Aerial of the community against the desert" loading="lazy">
+            <figcaption>From the canyon rim</figcaption>
+          </figure>
+          <figure class="third g1">
+            <img src="../assets/img/midtown-catalinas.jpg" alt="Catalina mountains beyond the rooftops" loading="lazy">
+            <figcaption>Every patio's view</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="near" id="location">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Location</span>
+          <h2>Fifteen minutes from town. A world from it.</h2>
+        </div>
+        <div class="near-grid">
+          <div class="map-ph" role="img" aria-label="Map placeholder showing the community at the canyon mouth, north Tucson">
+            <div class="map-pin">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              <span>Catalina Canyon</span>
+            </div>
+            <p class="map-note">Interactive Google Map embeds here at launch</p>
+          </div>
+          <ul>
+            <li><span>Canyon trailhead</span><span>At the gate</span></li>
+            <li><span>Oro Valley Marketplace</span><span>8 min</span></li>
+            <li><span>Oro Valley Hospital</span><span>10 min</span></li>
+            <li><span>La Encantada</span><span>14 min</span></li>
+            <li><span>Downtown Tucson</span><span>25 min</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tour" id="tour">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Visit</span>
+          <h2>Tour at golden hour. Trust us on this.</h2>
+          <p>The 5:30 slots go first — the canyon turns copper and the pictures take themselves.</p>
+        </div>
+        <div class="tour-grid">
+          <form id="tour-form" novalidate>
+            <div>
+              <label for="t-name">Name</label>
+              <input id="t-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="t-email">Email</label>
+              <input id="t-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="t-plan">Which plan?</label>
+              <select id="t-plan" name="plan">
+                <option>Wash — 1 bed</option>
+                <option>Saddle — 2 bed</option>
+                <option>Ridge — 2 bed + den</option>
+                <option>Summit — 3 bed</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div>
+              <label for="t-notes">Notes</label>
+              <textarea id="t-notes" name="notes" placeholder="Move-in timing, pets, anything else."></textarea>
+            </div>
+            <button class="btn btn--fill" type="submit">Schedule a Tour</button>
+            <p class="tour-confirm" role="status" id="tour-confirm">Thank you — we'll confirm your canyon tour by email today.</p>
+          </form>
+          <div class="tour-side">
+            <h3>Already sold on the view?</h3>
+            <p>
+              Skip straight to the application. It takes ten minutes, and our
+              team reviews every submission the same business day.
+            </p>
+            <div class="apply">
+              <h4>Applications open</h4>
+              <p>Fall move-ins are filling floor by floor — Ridge plans are two-thirds spoken for.</p>
+              <a class="btn btn--fill" href="#tour">Apply Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="demo-note">
+        <strong>Catalina Canyon Residences is a fictional community</strong>, designed and
+        written by AZRE as a portfolio demonstration of the Professional Website
+        package. The canyon, however, is very real.
+      </p>
+      <p>A demo by AZRE · Tucson, Arizona</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById("tour-form");
+      var confirmMsg = document.getElementById("tour-confirm");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.name.value.trim()) { form.name.focus(); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { form.email.focus(); return; }
+        confirmMsg.classList.add("show");
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>

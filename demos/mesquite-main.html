@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesquite &amp; Main — Warehouse Lofts in Downtown Tucson</title>
+  <meta name="description" content="Mesquite &amp; Main is 96 warehouse lofts a block off the streetcar line in downtown Tucson. Brick, steel, fourteen-foot ceilings. Now leasing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Public+Sans:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --concrete: #f1eee8;
+      --ink: #17161a;
+      --ink-soft: #55525c;
+      --brick: #a73e2c;
+      --brick-deep: #8c3122;
+      --signal: #e0a32e;
+      --paperline: #d8d3c8;
+      --display: "Anton", Impact, sans-serif;
+      --sans: "Public Sans", "Helvetica Neue", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 1.03rem;
+      line-height: 1.65;
+      background: var(--concrete);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { color: var(--brick); }
+
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+
+    .wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      background: var(--ink);
+      padding: 0.35rem 0.7rem;
+      margin-bottom: 1.4rem;
+    }
+
+    section { padding-block: clamp(4rem, 8vw, 7rem); }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 1.8rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--concrete);
+      background: var(--brick);
+      border: 2px solid var(--brick);
+      cursor: pointer;
+      transition: background-color 0.15s var(--ease), color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    }
+
+    .btn:hover { background: var(--brick-deep); border-color: var(--brick-deep); box-shadow: 4px 4px 0 var(--ink); }
+
+    .btn--line { background: transparent; color: var(--ink); border-color: var(--ink); }
+
+    .btn--line:hover { background: var(--ink); color: var(--concrete); box-shadow: 4px 4px 0 var(--brick); }
+
+    /* nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--concrete);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 72px; }
+
+    .mark {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mark span { color: var(--brick); }
+
+    .nav__links { display: flex; align-items: center; gap: 1.7rem; }
+
+    .nav__links a:not(.btn) {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding-block: 0.3rem;
+      transition: border-color 0.15s var(--ease);
+    }
+
+    .nav__links a:not(.btn):hover { border-bottom-color: var(--brick); }
+
+    .nav .btn { padding: 0.6rem 1.1rem; }
+
+    @media (max-width: 880px) { .nav__links a:not(.btn) { display: none; } }
+
+    /* ticker */
+    .ticker {
+      overflow: hidden;
+      border-bottom: 3px solid var(--ink);
+      background: var(--signal);
+      padding-block: 0.55rem;
+      white-space: nowrap;
+    }
+
+    .ticker__track {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      animation: tick 28s linear infinite;
+    }
+
+    @keyframes tick {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* hero */
+    .hero { padding-block: clamp(3rem, 7vw, 5.5rem) 0; }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 10vw, 7.5rem);
+      max-width: 12ch;
+    }
+
+    .hero h1 .brick-word { color: var(--brick); }
+
+    .hero .sub {
+      margin-top: 1.6rem;
+      font-size: 1.2rem;
+      max-width: 54ch;
+      color: var(--ink-soft);
+    }
+
+    .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-block: 2.2rem 3rem; }
+
+    .hero figure { position: relative; border: 3px solid var(--ink); }
+
+    .hero figure img { width: 100%; aspect-ratio: 16 / 8.5; object-fit: cover; }
+
+    .hero figcaption {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--concrete);
+      padding: 0.4rem 0.8rem;
+    }
+
+    .hero__facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 3px solid var(--ink);
+      border-top: 0;
+    }
+
+    .hero__facts div {
+      padding: 1.2rem 1.4rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .hero__facts div + div { border-left: 3px solid var(--ink); }
+
+    .hero__facts strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 700px) {
+      .hero__facts { grid-template-columns: 1fr; }
+      .hero__facts div + div { border-left: 0; border-top: 3px solid var(--ink); }
+    }
+
+    /* finishes */
+    .duo {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .duo h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); max-width: 14ch; }
+
+    .duo .body { color: var(--ink-soft); margin-top: 1.2rem; max-width: 52ch; }
+
+    .finishes { list-style: none; border-top: 3px solid var(--ink); }
+
+    .finishes li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      padding-block: 1.4rem;
+      border-bottom: 1px solid var(--paperline);
+    }
+
+    .finishes li:last-child { border-bottom: 3px solid var(--ink); }
+
+    .finishes svg { width: 28px; height: 28px; stroke: var(--brick); margin-top: 0.15rem; }
+
+    .finishes strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .finishes p { color: var(--ink-soft); font-size: 0.97rem; }
+
+    @media (max-width: 900px) { .duo { grid-template-columns: 1fr; } }
+
+    /* plans */
+    .plans { background: var(--ink); color: var(--concrete); }
+
+    .plans .tag { background: var(--signal); color: var(--ink); }
+
+    .plans h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+
+    .plans__intro p { color: rgba(241, 238, 232, 0.7); margin-top: 1rem; max-width: 52ch; }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .plan {
+      border: 2px solid rgba(241, 238, 232, 0.35);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+    }
+
+    .plan:hover { border-color: var(--signal); background: rgba(241, 238, 232, 0.04); }
+
+    .plan svg.floor { width: 100%; height: auto; margin-block: 0.6rem 1.4rem; color: var(--concrete); }
+
+    .plan h3 { font-size: 1.4rem; }
+
+    .plan .spec {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(241, 238, 232, 0.65);
+      margin-top: 0.5rem;
+    }
+
+    .plan .rent { font-family: var(--display); font-size: 1.4rem; color: var(--signal); margin-top: 1.1rem; }
+
+    .plan .rent span { font-family: var(--mono); font-size: 0.74rem; color: rgba(241, 238, 232, 0.65); }
+
+    .plan .btn { margin-top: 1.5rem; text-align: center; background: transparent; color: var(--concrete); border-color: rgba(241, 238, 232, 0.5); }
+
+    .plan .btn:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); box-shadow: none; }
+
+    @media (max-width: 900px) { .plan-grid { grid-template-columns: 1fr; } }
+
+    /* amenities */
+    .amenities h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); max-width: 16ch; }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      list-style: none;
+      border: 3px solid var(--ink);
+    }
+
+    .amenity-grid li { padding: 1.6rem; border-right: 1px solid var(--paperline); border-bottom: 1px solid var(--paperline); }
+
+    .amenity-grid li:nth-child(4n) { border-right: 0; }
+
+    .amenity-grid li:nth-child(n+5) { border-bottom: 0; }
+
+    .amenity-grid svg { width: 28px; height: 28px; stroke: var(--brick); margin-bottom: 0.85rem; }
+
+    .amenity-grid strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.02rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .amenity-grid p { font-size: 0.92rem; color: var(--ink-soft); }
+
+    @media (max-width: 900px) {
+      .amenity-grid { grid-template-columns: repeat(2, 1fr); }
+      .amenity-grid li:nth-child(4n) { border-right: 1px solid var(--paperline); }
+      .amenity-grid li:nth-child(2n) { border-right: 0; }
+      .amenity-grid li:nth-child(n+5) { border-bottom: 1px solid var(--paperline); }
+      .amenity-grid li:nth-child(n+7) { border-bottom: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .amenity-grid { grid-template-columns: 1fr; }
+      .amenity-grid li { border-right: 0 !important; border-bottom: 1px solid var(--paperline) !important; }
+      .amenity-grid li:last-child { border-bottom: 0 !important; }
+    }
+
+    /* neighborhood */
+    .hood { background: #fff; border-block: 3px solid var(--ink); }
+
+    .hood .duo { align-items: center; }
+
+    .hood figure { border: 3px solid var(--ink); }
+
+    .hood figure img { aspect-ratio: 4 / 3.4; object-fit: cover; }
+
+    .distances { list-style: none; margin-top: 1.9rem; border-top: 3px solid var(--ink); }
+
+    .distances li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding-block: 0.95rem;
+      border-bottom: 1px solid var(--paperline);
+    }
+
+    .distances .min {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--brick);
+      white-space: nowrap;
+    }
+
+    /* voices */
+    .voices h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .voice { border: 3px solid var(--ink); padding: 1.9rem; background: #fff; box-shadow: 6px 6px 0 var(--ink); }
+
+    .voice blockquote { font-size: 1.08rem; line-height: 1.55; font-weight: 500; }
+
+    .voice cite {
+      display: block;
+      margin-top: 1.3rem;
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brick);
+    }
+
+    @media (max-width: 900px) { .voice-grid { grid-template-columns: 1fr; } }
+
+    /* steps */
+    .steps { background: var(--brick); color: var(--concrete); }
+
+    .steps .tag { background: var(--ink); color: var(--concrete); }
+
+    .steps h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 3rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      counter-reset: s;
+    }
+
+    .step-grid > div { border-top: 3px solid var(--concrete); padding-top: 1.3rem; }
+
+    .step-grid > div::before {
+      counter-increment: s;
+      content: "0" counter(s);
+      display: block;
+      font-family: var(--display);
+      font-size: 1.4rem;
+      color: var(--signal);
+      margin-bottom: 0.7rem;
+    }
+
+    .step-grid h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+    .step-grid p { color: rgba(241, 238, 232, 0.85); font-size: 0.97rem; }
+
+    @media (max-width: 900px) { .step-grid { grid-template-columns: 1fr; } }
+
+    /* closing */
+    .close-cta { text-align: center; }
+
+    .close-cta h2 { font-size: clamp(2.4rem, 6vw, 4.2rem); max-width: 16ch; margin-inline: auto; }
+
+    .close-cta p { color: var(--ink-soft); max-width: 46ch; margin: 1.3rem auto 2.3rem; }
+
+    footer {
+      background: var(--ink);
+      color: rgba(241, 238, 232, 0.75);
+      padding-block: 3rem 2rem;
+      font-size: 0.92rem;
+    }
+
+    .foot { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
+
+    .foot address { font-style: normal; line-height: 1.9; }
+
+    .foot strong { font-family: var(--display); font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; color: var(--concrete); }
+
+    .foot .fine { width: 100%; padding-top: 1.4rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .ticker__track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a class="mark" href="#top">Mesquite <span>&amp;</span> Main</a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#lofts">The Lofts</a>
+        <a href="#plans">Floor Plans</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#downtown">Downtown</a>
+        <a class="btn" href="#tour">Book a Walkthrough</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true">
+    <span class="ticker__track">
+      NOW LEASING · DOWNTOWN TUCSON · ONE BLOCK OFF THE STREETCAR · 96 LOFTS · BRICK &amp; STEEL SINCE 1948 · NOW LEASING · DOWNTOWN TUCSON · ONE BLOCK OFF THE STREETCAR · 96 LOFTS · BRICK &amp; STEEL SINCE 1948 ·&nbsp;
+    </span>
+  </div>
+
+  <main id="top">
+    <!-- hero -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="tag">EST. 1948 · RE-OPENED 2026</span>
+        <h1>The warehouse kept the <span class="brick-word">brick.</span> You get the rest.</h1>
+        <p class="sub">
+          Ninety-six lofts inside a 1948 produce warehouse, one block off the
+          streetcar line. Fourteen-foot ceilings, steel sash windows, and a
+          front door that opens onto everything downtown Tucson does after dark.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn" href="#tour">Book a walkthrough</a>
+          <a class="btn btn--line" href="#plans">See the lofts</a>
+        </div>
+        <figure>
+          <img src="../assets/img/tucson-downtown-dusk.jpg" alt="Downtown Tucson at dusk, streets and buildings lighting up below the mountains" fetchpriority="high">
+          <figcaption>The neighborhood, from above · dusk</figcaption>
+        </figure>
+        <div class="hero__facts">
+          <div><strong>96</strong> lofts</div>
+          <div><strong>14 ft</strong> ceilings</div>
+          <div><strong>1 block</strong> to the streetcar</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- lofts / finishes -->
+    <section id="lofts">
+      <div class="wrap duo">
+        <div>
+          <span class="tag">The Lofts</span>
+          <h2>Industrial bones. Deliberate everything else.</h2>
+          <p class="body">
+            The building spent seventy years moving produce through Tucson.
+            The renovation kept what worked — brick, steel, daylight by the
+            wall — and rebuilt the rest to a standard the original foreman
+            would respect.
+          </p>
+        </div>
+        <ul class="finishes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M3 14h18M8 4v5M13 9v5M8 14v6"/></svg>
+            <div>
+              <strong>Exposed 1948 brick</strong>
+              <p>Original masonry, sealed and left honest — every loft wears a different pattern of it.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18"/><path d="M4 9h16M4 15h16M12 3v18"/></svg>
+            <div>
+              <strong>Steel sash windows</strong>
+              <p>Nine feet tall, re-glazed for the desert, aimed at the mountains or the marquee lights.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9Z"/><path d="M3 9l2-4h14l2 4"/></svg>
+            <div>
+              <strong>Quartz &amp; steel kitchens</strong>
+              <p>Restaurant-grade ranges, quartz counters, open shelving on blackened steel.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 5V3M12 21v-2M5 12H3m18 0h-2M6.6 6.6 5.2 5.2m13.6 13.6-1.4-1.4M6.6 17.4l-1.4 1.4M18.8 5.2l-1.4 1.4"/></svg>
+            <div>
+              <strong>Smart entry, standard</strong>
+              <p>Keyless doors, smart thermostats, and fiber internet ready on day one.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- plans -->
+    <section class="plans" id="plans">
+      <div class="wrap">
+        <div class="plans__intro">
+          <span class="tag">Floor Plans</span>
+          <h2>Three lofts. Named for the streets.</h2>
+          <p>
+            No two lofts in the building repeat exactly — brick and beam saw
+            to that — but every one starts from one of these three plans.
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <h3>The Stone</h3>
+            <p class="spec">Studio loft · 1 bath · 580 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="Studio loft floor plan diagram: one open volume with kitchen wall, bath at back, nine-foot windows across the front">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M10 20 H250" stroke-width="1" stroke-dasharray="6 4"/>
+              <path d="M180 190 V130 M180 130 H250" stroke-width="1.2"/>
+              <path d="M10 130 H60 M60 130 V190" stroke-width="1.2"/>
+              <text x="100" y="100" font-family="'IBM Plex Mono', monospace" font-size="10" fill="currentColor" stroke="none">OPEN LOFT</text>
+              <text x="196" y="165" font-family="'IBM Plex Mono', monospace" font-size="9" fill="currentColor" stroke="none">BATH</text>
+              <text x="20" y="165" font-family="'IBM Plex Mono', monospace" font-size="9" fill="currentColor" stroke="none">CLOSET</text>
+              <text x="78" y="34" font-family="'IBM Plex Mono', monospace" font-size="8" fill="currentColor" stroke="none">9-FT WINDOW WALL</text>
+            </svg>
+            <p class="rent">From $1,295 <span>/ MO</span></p>
+            <a class="btn" href="#tour">Check availability</a>
+          </article>
+
+          <article class="plan">
+            <h3>The Toole</h3>
+            <p class="spec">1 bed loft · 1 bath · 820 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="One-bedroom loft floor plan diagram: partitioned bedroom, open living and kitchen, bath and storage along the back wall">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M10 20 H250" stroke-width="1" stroke-dasharray="6 4"/>
+              <path d="M95 190 V90 M95 90 H10" stroke-width="1.2"/>
+              <path d="M175 190 V140 M175 140 H250" stroke-width="1.2"/>
+              <text x="26" y="145" font-family="'IBM Plex Mono', monospace" font-size="10" fill="currentColor" stroke="none">BED</text>
+              <text x="130" y="100" font-family="'IBM Plex Mono', monospace" font-size="10" fill="currentColor" stroke="none">LIVING /</text>
+              <text x="130" y="114" font-family="'IBM Plex Mono', monospace" font-size="10" fill="currentColor" stroke="none">KITCHEN</text>
+              <text x="192" y="170" font-family="'IBM Plex Mono', monospace" font-size="9" fill="currentColor" stroke="none">BATH</text>
+              <text x="78" y="34" font-family="'IBM Plex Mono', monospace" font-size="8" fill="currentColor" stroke="none">9-FT WINDOW WALL</text>
+            </svg>
+            <p class="rent">From $1,650 <span>/ MO</span></p>
+            <a class="btn" href="#tour">Check availability</a>
+          </article>
+
+          <article class="plan">
+            <h3>The Congress</h3>
+            <p class="spec">2 bed corner loft · 2 bath · 1,210 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="Two-bedroom corner loft floor plan diagram: bedrooms at opposite corners, double-exposure windows, central living and kitchen">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M10 20 H250" stroke-width="1" stroke-dasharray="6 4"/>
+              <path d="M240 10 V190" stroke-width="1" stroke-dasharray="6 4"/>
+              <path d="M85 10 V80 M85 80 H10" stroke-width="1.2"/>
+              <path d="M160 190 V120 M160 120 H10" stroke-width="1.2"/>
+              <path d="M160 155 H100 M100 155 V190" stroke-width="1.2"/>
+              <text x="24" y="50" font-family="'IBM Plex Mono', monospace" font-size="9" fill="currentColor" stroke="none">BED 1</text>
+              <text x="24" y="160" font-family="'IBM Plex Mono', monospace" font-size="9" fill="currentColor" stroke="none">BED 2</text>
+              <text x="112" y="178" font-family="'IBM Plex Mono', monospace" font-size="8" fill="currentColor" stroke="none">BATH</text>
+              <text x="140" y="65" font-family="'IBM Plex Mono', monospace" font-size="10" fill="currentColor" stroke="none">LIVING / KITCHEN</text>
+              <text x="176" y="178" font-family="'IBM Plex Mono', monospace" font-size="8" fill="currentColor" stroke="none">BATH 2</text>
+            </svg>
+            <p class="rent">From $2,300 <span>/ MO</span></p>
+            <a class="btn" href="#tour">Check availability</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- amenities -->
+    <section class="amenities" id="amenities">
+      <div class="wrap">
+        <span class="tag">Amenities</span>
+        <h2>Built for people with somewhere to be.</h2>
+        <ul class="amenity-grid">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 20h18M5 20V10h14v10"/><path d="M9 10V6h6v4M7 14h2m6 0h2"/></svg>
+            <strong>The roof</strong>
+            <p>A full-block deck with grills, shade sails, and the best free show in town: sunset over the Tucsons.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="6.5" cy="17" r="3"/><circle cx="17.5" cy="17" r="3"/><path d="M6.5 17 10 8h3l4.5 9M10 8 8 5h3"/></svg>
+            <strong>The gear room</strong>
+            <p>Secure bike storage, a workbench, and lockers for climbing rope and river gear.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 19V6a1 1 0 0 1 1-1h9v14"/><path d="M14 9h5a1 1 0 0 1 1 1v9M4 19h17M8 9h2m-2 4h2m8 0h1"/></svg>
+            <strong>Mezzanine cowork</strong>
+            <p>Desks and call booths above the lobby — fiber fast, coffee close.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M17 8h2a2 2 0 0 1 0 4h-2M5 8h12v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8Z"/><path d="M8 3v2m3-2v2m3-2v2"/></svg>
+            <strong>Lobby counter</strong>
+            <p>A local roaster runs the front counter — residents drink at cost, regulars keep it loud.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+            <strong>Practice room</strong>
+            <p>Soundproofed, drum-kit ready, bookable by the hour. Downtown has gigs; you should take one.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="6" r="2.4"/><circle cx="17" cy="9" r="1.6"/><path d="M5 21c0-4 2.5-7 6-7 2.4 0 4.4 1.4 5.4 3.6"/></svg>
+            <strong>Dog wash</strong>
+            <p>A proper wash bay by the freight door, towels included, judgment not.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M4 9h16M9 9v11"/></svg>
+            <strong>Package hall</strong>
+            <p>Cold storage for groceries, oversize shelves for the bike you ordered anyway.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="8" width="12" height="10" rx="1"/><path d="M16 11h2.5a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 1-3 0"/><path d="M8 8V6a2 2 0 0 1 4 0v2"/></svg>
+            <strong>EV &amp; garage</strong>
+            <p>Gated garage across the alley with Level-2 charging on every row.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- neighborhood -->
+    <section class="hood" id="downtown">
+      <div class="wrap duo">
+        <figure>
+          <img src="../assets/img/downtown-avenue.jpg" alt="Aerial view straight down a Tucson avenue, neighborhoods on both sides running into the downtown towers" loading="lazy">
+        </figure>
+        <div>
+          <span class="tag">Downtown</span>
+          <h2>Your block does the commuting.</h2>
+          <p class="body">
+            Mesquite &amp; Main sits in the warehouse district's front row —
+            the streetcar picks you up around the corner and drops you at
+            campus, the Mercado, or back home from wherever the night went.
+          </p>
+          <ul class="distances">
+            <li>Sun Link streetcar stop <span class="min">2 MIN WALK</span></li>
+            <li>Congress Street venues <span class="min">4 MIN WALK</span></li>
+            <li>Ronstadt Transit Center <span class="min">5 MIN WALK</span></li>
+            <li>Mercado San Agustín <span class="min">12 MIN RIDE</span></li>
+            <li>University of Arizona <span class="min">15 MIN RIDE</span></li>
+            <li>Tucson International Airport <span class="min">20 MIN DRIVE</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- voices -->
+    <section class="voices">
+      <div class="wrap">
+        <span class="tag">Resident Voices</span>
+        <h2>Heard through the brick.</h2>
+        <div class="voice-grid">
+          <div class="voice">
+            <blockquote>
+              I play two nights a week on Congress and walk home in ten
+              minutes with my amp. The practice room means my neighbors
+              still say hi to me.
+            </blockquote>
+            <cite>Marisol · The Toole</cite>
+          </div>
+          <div class="voice">
+            <blockquote>
+              My office is the mezzanine, my gym is the gear room, my car
+              hasn't moved in three weeks. Downtown finally works like it
+              always should have.
+            </blockquote>
+            <cite>Devon · The Stone</cite>
+          </div>
+          <div class="voice">
+            <blockquote>
+              We wanted a real loft, not "loft-style." The day we toured, the
+              agent knocked on the brick and said "1948." Sold.
+            </blockquote>
+            <cite>Ana &amp; Chris · The Congress</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- steps -->
+    <section class="steps">
+      <div class="wrap">
+        <span class="tag">Leasing</span>
+        <h2>Three steps to the block.</h2>
+        <div class="step-grid">
+          <div>
+            <h3>Find your floor plan</h3>
+            <p>Stone, Toole, or Congress — check which lofts are open and which corner of the building they keep.</p>
+          </div>
+          <div>
+            <h3>Tour &amp; apply</h3>
+            <p>Walk the building, knock on the brick yourself, and apply online before you're back on the streetcar.</p>
+          </div>
+          <div>
+            <h3>Take the keys</h3>
+            <p>Freight elevator's yours on move-in day. First coffee at the lobby counter is on the house.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- closing -->
+    <section class="close-cta" id="tour">
+      <div class="wrap">
+        <span class="tag">Book a Walkthrough</span>
+        <h2>Come knock on the brick.</h2>
+        <p>Walkthroughs daily, evenings included — this building shows best when the marquees are on.</p>
+        <a class="btn" href="mailto:lease@mesquiteandmain.example">Book a walkthrough</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <address>
+        <strong>Mesquite &amp; Main</strong><br>
+        48 E. Warehouse Row, Tucson, AZ 85701<br>
+        (520) 555-0163 · lease@mesquiteandmain.example
+      </address>
+      <div>
+        Leasing office open daily<br>
+        10 a.m. – 7 p.m. MST
+      </div>
+      <p class="fine">
+        MESQUITE &amp; MAIN IS A FICTIONAL COMMUNITY, DESIGNED AND WRITTEN BY AZRE AS A
+        DEMONSTRATION BUILD. PRICING AND DETAILS ARE ILLUSTRATIVE.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

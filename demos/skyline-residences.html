@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skyline Residences Tucson — High-Rise Living Above Congress Street</title>
+  <meta name="description" content="Skyline Residences: 120 homes across fourteen floors above downtown Tucson. Floor-to-ceiling glass, a sky lounge, and the city delivered to your window.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0c0f14;
+      --void-2: #131822;
+      --void-3: #1c2330;
+      --glass: #e8edf4;
+      --dim: #8b96a6;
+      --sky: #6aa5e8;
+      --sky-hot: #8fc0f7;
+      --ember: #e08c4f;
+      --hairline: rgba(232, 237, 244, 0.12);
+      --font: "Outfit", "Helvetica Neue", sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      font-size: 1.03rem;
+      font-weight: 250;
+      line-height: 1.7;
+      color: var(--glass);
+      background: var(--void);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--sky-hot); }
+    :focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+
+    .wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+    h1, h2, h3 { font-weight: 650; line-height: 1.05; letter-spacing: -0.02em; }
+
+    .kicker {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.7rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: all 0.2s var(--ease);
+      cursor: pointer;
+    }
+    .btn--sky { background: var(--sky); color: var(--void); }
+    .btn--sky:hover { background: var(--sky-hot); }
+    .btn--ghost { border-color: var(--hairline); color: var(--glass); }
+    .btn--ghost:hover { border-color: var(--sky); color: var(--sky-hot); }
+
+    .fade { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .fade.in { opacity: 1; transform: none; }
+
+    /* header */
+    header { position: sticky; top: 0; z-index: 40; background: rgba(12, 15, 20, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hairline); }
+    .bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1rem; }
+    .logo { display: flex; align-items: baseline; gap: 0.55rem; text-decoration: none; color: var(--glass); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo i { width: 10px; height: 22px; background: linear-gradient(var(--sky), var(--ember)); border-radius: 2px; transform: translateY(3px); }
+    .logo small { font-weight: 300; color: var(--dim); letter-spacing: 0.2em; font-size: 0.68rem; }
+    nav.links { display: flex; gap: 1.7rem; }
+    nav.links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); text-decoration: none; }
+    nav.links a:hover { color: var(--sky-hot); }
+    .bar .btn { padding: 0.55rem 1.15rem; }
+
+    /* hero */
+    .hero { position: relative; min-height: clamp(540px, 88vh, 800px); display: grid; align-items: end; overflow: hidden; }
+    .hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      filter: hue-rotate(12deg) saturate(0.85) brightness(0.72) contrast(1.08);
+    }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(6deg, rgba(12, 15, 20, 0.92) 8%, rgba(12, 15, 20, 0.12) 62%); }
+    .hero .wrap { position: relative; z-index: 2; padding-block: clamp(3rem, 7vw, 5rem); }
+    .hero h1 { font-size: clamp(2.7rem, 7vw, 5.4rem); max-width: 13ch; }
+    .hero h1 span { color: var(--sky-hot); }
+    .hero p.lede { margin-top: 1.2rem; max-width: 46ch; color: var(--dim); font-size: 1.12rem; font-weight: 300; }
+    .hero__ctas { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+    section { padding-block: clamp(4rem, 9vw, 6.5rem); }
+    .section-head { max-width: 660px; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+    .section-head h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+    .section-head p { margin-top: 0.9rem; color: var(--dim); font-weight: 300; }
+
+    /* animated counters */
+    .counters { border-block: 1px solid var(--hairline); background: var(--void-2); padding-block: clamp(2rem, 4vw, 3rem); }
+    .counters .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; text-align: center; }
+    .counter strong { display: block; font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 700; color: var(--sky-hot); font-variant-numeric: tabular-nums; line-height: 1; }
+    .counter span { display: block; margin-top: 0.5rem; font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--dim); }
+
+    /* floor selector */
+    .floors-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+    .tower { list-style: none; display: grid; gap: 6px; }
+    .tower button {
+      width: 100%; text-align: left; font: inherit; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
+      background: var(--void-2); border: 1px solid var(--hairline); border-radius: 4px;
+      padding: 0.7rem 1rem; cursor: pointer; display: flex; justify-content: space-between;
+      transition: all 0.18s var(--ease);
+    }
+    .tower button:hover { color: var(--glass); border-color: var(--sky); }
+    .tower button[aria-selected="true"] { background: var(--void-3); color: var(--sky-hot); border-color: var(--sky); }
+    .tower button em { font-style: normal; color: var(--ember); }
+    .floor-stage { background: var(--void-2); border: 1px solid var(--hairline); border-radius: 8px; padding: clamp(1.5rem, 3.5vw, 2.5rem); }
+    .floor-stage h3 { font-size: 1.5rem; }
+    .floor-stage .avail { margin-top: 0.4rem; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ember); }
+    .floor-units { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .unit { background: var(--void-3); border: 1px solid var(--hairline); border-radius: 6px; padding: 1.1rem 1.2rem; }
+    .unit b { display: block; font-size: 1.05rem; font-weight: 650; }
+    .unit span { font-size: 0.85rem; color: var(--dim); font-weight: 300; }
+    .unit .u-rent { display: block; margin-top: 0.5rem; color: var(--sky-hot); font-weight: 600; font-size: 1.05rem; }
+    .floor-stage .btn { margin-top: 1.5rem; }
+
+    /* amenity panels */
+    .panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .panel {
+      position: relative; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--hairline); min-height: 320px;
+      display: grid; align-items: end;
+    }
+    .panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) brightness(0.62); transition: transform 0.6s var(--ease), filter 0.4s var(--ease); }
+    .panel:hover img { transform: scale(1.05); filter: saturate(1) brightness(0.72); }
+    .panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(12,15,20,0.85) 0%, transparent 55%); }
+    .panel div { position: relative; z-index: 2; padding: 1.4rem; }
+    .panel h3 { font-size: 1.3rem; }
+    .panel p { font-size: 0.92rem; color: var(--dim); font-weight: 300; margin-top: 0.3rem; }
+    .panel .p2 img { object-position: center 70%; }
+
+    /* virtual tour */
+    .vt { background: var(--void-2); border-block: 1px solid var(--hairline); }
+    .vt-frame { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--hairline); aspect-ratio: 21 / 9; background: var(--void); }
+    .vt-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; filter: hue-rotate(10deg) saturate(0.8); }
+    .vt-play { position: absolute; inset: 0; width: 100%; display: grid; place-items: center; background: none; border: none; color: var(--glass); cursor: pointer; }
+    .vt-play .ring { width: 84px; height: 84px; border-radius: 50%; border: 1px solid var(--sky); display: grid; place-items: center; margin-inline: auto; transition: transform 0.3s var(--ease), background 0.3s var(--ease); }
+    .vt-play:hover .ring { transform: scale(1.08); background: rgba(106, 165, 232, 0.16); }
+    .vt-play svg { width: 26px; height: 26px; fill: var(--sky-hot); margin-left: 4px; }
+    .vt-play span { display: block; margin-top: 1rem; font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase; }
+    .vt-note { margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--dim); }
+
+    /* lead capture */
+    .lead-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2.5rem, 6vw, 4.5rem); align-items: start; }
+    .lead-side h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    .lead-side p { margin-top: 1rem; color: var(--dim); font-weight: 300; max-width: 44ch; }
+    .lead-side .perk { margin-top: 1.6rem; display: flex; gap: 0.9rem; align-items: baseline; border-top: 1px solid var(--hairline); padding-top: 1.2rem; }
+    .lead-side .perk b { color: var(--ember); white-space: nowrap; }
+    .lead-side .perk span { color: var(--dim); font-size: 0.95rem; font-weight: 300; }
+    form.lead { background: var(--void-2); border: 1px solid var(--hairline); border-radius: 10px; padding: clamp(1.75rem, 4vw, 2.5rem); display: grid; gap: 1.1rem; }
+    form.lead .duo2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    form.lead label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); display: block; margin-bottom: 0.45rem; }
+    form.lead input, form.lead select, form.lead textarea {
+      width: 100%; padding: 0.85rem 0.95rem; font: inherit; font-weight: 300;
+      color: var(--glass); background: var(--void-3); border: 1px solid var(--hairline); border-radius: 6px;
+    }
+    form.lead textarea { min-height: 84px; resize: vertical; }
+    form.lead .row2 { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .lead-confirm { font-size: 0.95rem; color: var(--sky-hot); display: none; }
+    .lead-confirm.show { display: block; }
+
+    /* sticky tour bar */
+    .bar-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: rgba(19, 24, 34, 0.96); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--hairline);
+      transform: translateY(110%);
+      transition: transform 0.4s var(--ease);
+    }
+    .bar-cta.show { transform: none; }
+    .bar-cta .wrap { display: flex; align-items: center; gap: 1.25rem; padding-block: 0.8rem; }
+    .bar-cta p { font-size: 0.92rem; color: var(--dim); font-weight: 300; margin-right: auto; }
+    .bar-cta p b { color: var(--glass); font-weight: 600; }
+    .bar-cta .btn { padding: 0.55rem 1.2rem; }
+
+    footer { border-top: 1px solid var(--hairline); padding-block: 2.5rem 5.5rem; font-size: 0.9rem; color: var(--dim); font-weight: 300; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+    .demo-note { max-width: 62ch; }
+    .demo-note strong { color: var(--glass); font-weight: 600; }
+
+    @media (max-width: 940px) {
+      nav.links { display: none; }
+      .counters .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .floors-grid, .lead-grid { grid-template-columns: 1fr; }
+      .panels { grid-template-columns: 1fr; }
+      .floor-units { grid-template-columns: 1fr; }
+      form.lead .duo2 { grid-template-columns: 1fr; }
+      .bar-cta p { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .fade { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap bar">
+      <a class="logo" href="#top"><i aria-hidden="true"></i>Skyline <small>Tucson</small></a>
+      <nav class="links" aria-label="Primary">
+        <a href="#floors">Floors</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#tour-virtual">Virtual Tour</a>
+        <a href="#lead">Contact</a>
+      </nav>
+      <a class="btn btn--sky" href="#lead">Schedule a Tour</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <div class="hero">
+      <img src="../assets/img/tucson-downtown-dusk.jpg" alt="Downtown Tucson at dusk, lights coming on across the skyline" width="1200" height="630">
+      <div class="wrap">
+        <span class="kicker">Fourteen floors · Downtown Tucson</span>
+        <h1>The city, <span>delivered to glass.</span></h1>
+        <p class="lede">
+          One hundred twenty residences above Congress Street — floor-to-ceiling
+          windows, a fourteenth-floor sky lounge, and sunsets measured in city
+          blocks.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn btn--sky" href="#lead">Schedule a Tour</a>
+          <a class="btn btn--ghost" href="#lead">Apply Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="counters" aria-label="Building at a glance">
+      <div class="wrap">
+        <div class="counter"><strong data-count="120">0</strong><span>Residences</span></div>
+        <div class="counter"><strong data-count="14">0</strong><span>Floors</span></div>
+        <div class="counter"><strong data-count="270">0</strong><span>Degree views</span></div>
+        <div class="counter"><strong data-count="94">0</strong><span>Walk score</span></div>
+      </div>
+    </div>
+
+    <section id="floors">
+      <div class="wrap">
+        <div class="section-head fade">
+          <span class="kicker">Availability, floor by floor</span>
+          <h2>Pick your altitude.</h2>
+          <p>Select a floor band to see what's open. Higher floors trade square footage for horizon.</p>
+        </div>
+        <div class="floors-grid fade">
+          <ul class="tower" role="tablist" aria-label="Floor bands">
+            <li><button role="tab" aria-selected="false" data-floor="sky">Floors 12–14 <em>2 open</em></button></li>
+            <li><button role="tab" aria-selected="false" data-floor="view">Floors 7–11 <em>5 open</em></button></li>
+            <li><button role="tab" aria-selected="true" data-floor="city">Floors 2–6 <em>8 open</em></button></li>
+          </ul>
+          <div class="floor-stage" aria-live="polite">
+            <h3 id="floor-title">Floors 2–6 · The City Collection</h3>
+            <p class="avail" id="floor-avail">8 residences open · from $1,650</p>
+            <div class="floor-units" id="floor-units"></div>
+            <a class="btn btn--sky" href="#lead">Schedule a Tour</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="amenities" style="padding-top: 0">
+      <div class="wrap">
+        <div class="section-head fade">
+          <span class="kicker">Amenities</span>
+          <h2>Three floors that aren't apartments.</h2>
+        </div>
+        <div class="panels fade">
+          <div class="panel">
+            <img src="../assets/img/tucson-skyline-sunset.jpg" alt="" aria-hidden="true" loading="lazy">
+            <div>
+              <h3>Sky lounge · 14</h3>
+              <p>Bar kitchen, fire tables, and the whole valley after dark.</p>
+            </div>
+          </div>
+          <div class="panel p2">
+            <img src="../assets/img/downtown-avenue.jpg" alt="" aria-hidden="true" loading="lazy">
+            <div>
+              <h3>Work floor · 3</h3>
+              <p>Conference rooms, phone booths, gigabit everything.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <img src="../assets/img/midtown-catalinas.jpg" alt="" aria-hidden="true" loading="lazy">
+            <div>
+              <h3>Wellness deck · 5</h3>
+              <p>Pool, sauna, strength studio — mountains included.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vt" id="tour-virtual">
+      <div class="wrap">
+        <div class="section-head fade">
+          <span class="kicker">Virtual tour</span>
+          <h2>Ride the elevator from your couch.</h2>
+        </div>
+        <div class="vt-frame fade">
+          <img src="../assets/img/tucson-downtown-dusk.jpg" alt="" aria-hidden="true" loading="lazy">
+          <button class="vt-play" type="button" id="vt-play" aria-label="Begin the virtual tour">
+            <span>
+              <span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+              <span id="vt-label">Launch the 3D tour</span>
+            </span>
+          </button>
+        </div>
+        <p class="vt-note">The full 3D walkthrough embeds here at launch — lobby to sky lounge, every plan type.</p>
+      </div>
+    </section>
+
+    <section id="lead">
+      <div class="wrap lead-grid">
+        <div class="lead-side fade">
+          <span class="kicker">Tours &amp; applications</span>
+          <h2>See it at dusk. That's the hour it was built for.</h2>
+          <p>
+            Evening tours end on the fourteenth floor as the lights come on.
+            Applications open the same night — most decisions land the next
+            business day.
+          </p>
+          <div class="perk">
+            <b>Current offer</b>
+            <span>Six weeks free on 14-month leases, floors 2–6, signed this month.</span>
+          </div>
+        </div>
+        <form class="lead fade" id="lead-form" novalidate>
+          <div class="duo2">
+            <div>
+              <label for="l-name">Name</label>
+              <input id="l-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="l-email">Email</label>
+              <input id="l-email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="duo2">
+            <div>
+              <label for="l-floor">Floor band</label>
+              <select id="l-floor" name="floor">
+                <option>Floors 12–14 · Sky</option>
+                <option>Floors 7–11 · View</option>
+                <option>Floors 2–6 · City</option>
+                <option>Best available</option>
+              </select>
+            </div>
+            <div>
+              <label for="l-movein">Move-in</label>
+              <select id="l-movein" name="movein">
+                <option>Within 30 days</option>
+                <option>1–2 months</option>
+                <option>3+ months</option>
+                <option>Just looking up</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="l-notes">Anything else?</label>
+            <textarea id="l-notes" name="notes" placeholder="Pets, parking, corner-unit dreams…"></textarea>
+          </div>
+          <div class="row2">
+            <button class="btn btn--sky" type="submit">Schedule a Tour</button>
+            <button class="btn btn--ghost" type="submit" data-intent="apply">Apply Now</button>
+          </div>
+          <p class="lead-confirm" role="status" id="lead-confirm">Done — the leasing team will confirm by email within the hour, business days.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="demo-note">
+        <strong>Skyline Residences is a fictional community</strong>, designed and written
+        by AZRE as a portfolio demonstration of the Premium Website package.
+        Downtown Tucson plays itself.
+      </p>
+      <p>A demo by AZRE · Tucson, Arizona</p>
+    </div>
+  </footer>
+
+  <div class="bar-cta" id="bar-cta" aria-hidden="true">
+    <div class="wrap">
+      <p><b>Skyline Residences</b> · from $1,650 · six weeks free this month</p>
+      <a class="btn btn--ghost" href="#lead">Apply Now</a>
+      <a class="btn btn--sky" href="#lead">Schedule a Tour</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* reveals */
+      var fades = document.querySelectorAll(".fade");
+      if ("IntersectionObserver" in window && !reduced) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.15 });
+        fades.forEach(function (el) { io.observe(el); });
+      } else {
+        fades.forEach(function (el) { el.classList.add("in"); });
+      }
+
+      /* animated counters */
+      var counters = document.querySelectorAll("[data-count]");
+      var runCounter = function (el) {
+        var target = parseInt(el.dataset.count, 10);
+        if (reduced) { el.textContent = target; return; }
+        var t0 = null;
+        var step = function (now) {
+          if (!t0) t0 = now;
+          var p = Math.min(1, (now - t0) / 1400);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      if ("IntersectionObserver" in window) {
+        var cio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { runCounter(en.target); cio.unobserve(en.target); }
+          });
+        }, { threshold: 0.6 });
+        counters.forEach(function (el) { cio.observe(el); });
+      } else {
+        counters.forEach(function (el) { el.textContent = el.dataset.count; });
+      }
+
+      /* floor selector */
+      var FLOORS = {
+        sky: {
+          title: "Floors 12–14 · The Sky Collection",
+          avail: "2 residences open · from $3,150",
+          units: [
+            ["PH-1402", "2 bed · 2.5 bath · 1,480 sq ft", "$4,400"],
+            ["1205", "2 bed · 2 bath · 1,190 sq ft", "$3,150"]
+          ]
+        },
+        view: {
+          title: "Floors 7–11 · The View Collection",
+          avail: "5 residences open · from $2,240",
+          units: [
+            ["1104", "2 bed · 2 bath · 1,120 sq ft", "$2,780"],
+            ["903", "1 bed + den · 1 bath · 860 sq ft", "$2,410"],
+            ["708", "1 bed · 1 bath · 742 sq ft", "$2,240"]
+          ]
+        },
+        city: {
+          title: "Floors 2–6 · The City Collection",
+          avail: "8 residences open · from $1,650",
+          units: [
+            ["604", "1 bed · 1 bath · 705 sq ft", "$1,895"],
+            ["412", "Studio · 1 bath · 540 sq ft", "$1,650"],
+            ["306", "2 bed · 2 bath · 1,010 sq ft", "$2,320"]
+          ]
+        }
+      };
+      var tabs = document.querySelectorAll(".tower button");
+      var titleEl = document.getElementById("floor-title");
+      var availEl = document.getElementById("floor-avail");
+      var unitsEl = document.getElementById("floor-units");
+      var drawFloor = function (key) {
+        var f = FLOORS[key];
+        titleEl.textContent = f.title;
+        availEl.textContent = f.avail;
+        unitsEl.innerHTML = "";
+        f.units.forEach(function (u) {
+          var d = document.createElement("div");
+          d.className = "unit";
+          d.innerHTML = "<b></b><span></span><span class='u-rent'></span>";
+          d.querySelector("b").textContent = "Residence " + u[0];
+          d.querySelector("span").textContent = u[1];
+          d.querySelector(".u-rent").textContent = u[2] + " / mo";
+          unitsEl.appendChild(d);
+        });
+      };
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
+          drawFloor(tab.dataset.floor);
+        });
+      });
+      drawFloor("city");
+
+      /* virtual tour placeholder */
+      document.getElementById("vt-play").addEventListener("click", function () {
+        document.getElementById("vt-label").textContent = "The 3D walkthrough embeds here at launch";
+      });
+
+      /* sticky bar after hero */
+      var barCta = document.getElementById("bar-cta");
+      var hero = document.querySelector(".hero");
+      var onScroll = function () {
+        var show = window.scrollY > hero.offsetHeight * 0.9;
+        barCta.classList.toggle("show", show);
+        barCta.setAttribute("aria-hidden", String(!show));
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* lead form */
+      var form = document.getElementById("lead-form");
+      var confirmMsg = document.getElementById("lead-confirm");
+      var intent = "tour";
+      form.querySelectorAll("button[type=submit]").forEach(function (b) {
+        b.addEventListener("click", function () { intent = b.dataset.intent === "apply" ? "apply" : "tour"; });
+      });
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.name.value.trim()) { form.name.focus(); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { form.email.focus(); return; }
+        confirmMsg.textContent = intent === "apply"
+          ? "Application started — check your email for the secure link to finish."
+          : "Done — the leasing team will confirm by email within the hour, business days.";
+        confirmMsg.classList.add("show");
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>

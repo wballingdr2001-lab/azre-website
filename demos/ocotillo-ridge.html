@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocotillo Ridge — New Apartment Residences in the Catalina Foothills, Tucson</title>
+  <meta name="description" content="Ocotillo Ridge is a new community of 240 foothills residences above Tucson. Studios to three-bedroom townhomes, now preleasing for Fall 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Figtree:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --night: #241f28;
+      --night-2: #2d2733;
+      --night-3: #363040;
+      --sand: #e9dcc8;
+      --sand-dim: #b3a68e;
+      --coral: #d96a4a;
+      --coral-soft: #e58a6e;
+      --hairline: rgba(233, 220, 200, 0.16);
+      --serif: "Prata", Georgia, serif;
+      --sans: "Figtree", "Helvetica Neue", sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 1.06rem;
+      line-height: 1.7;
+      background: var(--night);
+      color: var(--sand);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { color: var(--coral-soft); }
+
+    :focus-visible { outline: 2px solid var(--coral-soft); outline-offset: 3px; }
+
+    .wrap { max-width: 1140px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
+
+    .kicker {
+      font-family: var(--sans);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--coral-soft);
+      display: block;
+      margin-bottom: 1.4rem;
+    }
+
+    section { padding-block: clamp(4.5rem, 9vw, 7.5rem); }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 1.9rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--night);
+      background: var(--coral);
+      border: 1px solid var(--coral);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+    }
+
+    .btn:hover { background: var(--coral-soft); border-color: var(--coral-soft); }
+
+    .btn--line {
+      background: transparent;
+      color: var(--sand);
+      border: 1px solid var(--hairline);
+    }
+
+    .btn--line:hover { background: var(--sand); color: var(--night); border-color: var(--sand); }
+
+    /* nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(36, 31, 40, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 74px;
+    }
+
+    .mark {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mark b { color: var(--coral-soft); font-weight: 400; }
+
+    .nav__links { display: flex; align-items: center; gap: 1.9rem; }
+
+    .nav__links a:not(.btn) {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-block: 0.35rem;
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .nav__links a:not(.btn):hover { border-bottom-color: var(--coral-soft); }
+
+    .nav .btn { padding: 0.7rem 1.3rem; }
+
+    @media (max-width: 860px) {
+      .nav__links a:not(.btn) { display: none; }
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      padding-block: 0 clamp(3rem, 7vw, 5.5rem);
+      isolation: isolate;
+    }
+
+    .hero__bg, .hero__bg img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(36, 31, 40, 0.6) 0%, rgba(36, 31, 40, 0.25) 45%, rgba(36, 31, 40, 0) 75%),
+        linear-gradient(180deg, rgba(36, 31, 40, 0.5) 0%, rgba(36, 31, 40, 0.1) 40%, rgba(36, 31, 40, 0.92) 100%);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      max-width: 15ch;
+      text-wrap: balance;
+    }
+
+    .hero p.sub {
+      margin-top: 1.5rem;
+      max-width: 52ch;
+      font-size: 1.15rem;
+      color: rgba(233, 220, 200, 0.88);
+    }
+
+    .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.2rem; }
+
+    .hero__facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .hero__facts div { font-size: 0.95rem; color: var(--sand-dim); }
+
+    .hero__facts strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--sand);
+      letter-spacing: 0.02em;
+    }
+
+    /* ridgeline divider — the demo's signature */
+    .ridge {
+      display: block;
+      width: 100%;
+      height: 46px;
+      color: var(--coral);
+      opacity: 0.7;
+    }
+
+    /* residences / finishes */
+    .duo {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .duo h2 { font-size: clamp(1.9rem, 4vw, 3rem); max-width: 16ch; }
+
+    .duo .body { color: var(--sand-dim); max-width: 54ch; margin-top: 1.25rem; }
+
+    .finishes { list-style: none; display: grid; gap: 0; margin-top: 0.5rem; }
+
+    .finishes li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.1rem;
+      padding-block: 1.35rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .finishes li:first-child { border-top: 1px solid var(--hairline); }
+
+    .finishes svg { width: 26px; height: 26px; stroke: var(--coral-soft); margin-top: 0.2rem; }
+
+    .finishes strong {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.12rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .finishes p { color: var(--sand-dim); font-size: 0.98rem; }
+
+    /* floor plans */
+    .plans { background: var(--night-2); }
+
+    .plans__intro { max-width: 640px; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+    .plans__intro h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+
+    .plans__intro p { color: var(--sand-dim); margin-top: 1.1rem; }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .plan {
+      background: var(--night);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+
+    .plan:hover { border-color: var(--coral); transform: translateY(-4px); }
+
+    .plan svg.floor {
+      width: 100%;
+      height: auto;
+      margin-block: 0.5rem 1.5rem;
+      color: var(--sand);
+    }
+
+    .plan h3 { font-size: 1.35rem; }
+
+    .plan .spec {
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+      margin-top: 0.45rem;
+    }
+
+    .plan .rent {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--coral-soft);
+      margin-top: 1.1rem;
+    }
+
+    .plan .rent span { font-family: var(--sans); font-size: 0.85rem; color: var(--sand-dim); }
+
+    .plan .btn { margin-top: 1.4rem; text-align: center; }
+
+    @media (max-width: 900px) {
+      .plan-grid { grid-template-columns: 1fr; }
+      .duo { grid-template-columns: 1fr; }
+    }
+
+    /* amenities */
+    .amenities h2 { font-size: clamp(1.9rem, 4vw, 3rem); max-width: 18ch; }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      list-style: none;
+    }
+
+    .amenity-grid svg { width: 30px; height: 30px; stroke: var(--coral-soft); margin-bottom: 0.9rem; }
+
+    .amenity-grid strong {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .amenity-grid p { font-size: 0.95rem; color: var(--sand-dim); }
+
+    @media (max-width: 900px) { .amenity-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .amenity-grid { grid-template-columns: 1fr; } }
+
+    /* neighborhood */
+    .hood { background: var(--night-2); }
+
+    .hood .duo { align-items: center; }
+
+    .hood figure {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .hood figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 0.85rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(233, 220, 200, 0.85);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .distances { list-style: none; margin-top: 2rem; }
+
+    .distances li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1rem;
+      border-bottom: 1px solid var(--hairline);
+      font-size: 1.02rem;
+    }
+
+    .distances li:first-child { border-top: 1px solid var(--hairline); }
+
+    .distances .min {
+      font-family: var(--serif);
+      color: var(--coral-soft);
+      white-space: nowrap;
+    }
+
+    /* testimonials */
+    .voices { text-align: center; }
+
+    .voices h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      text-align: left;
+    }
+
+    .voice {
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      padding: 2rem;
+      background: var(--night-2);
+    }
+
+    .voice blockquote {
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      line-height: 1.55;
+      color: var(--sand);
+    }
+
+    .voice cite {
+      display: block;
+      margin-top: 1.4rem;
+      font-style: normal;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+    }
+
+    @media (max-width: 900px) { .voice-grid { grid-template-columns: 1fr; } }
+
+    /* leasing steps */
+    .steps { background: var(--night-2); }
+
+    .steps h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 3rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      counter-reset: s;
+    }
+
+    .step-grid > div {
+      border-top: 1px solid var(--coral);
+      padding-top: 1.4rem;
+    }
+
+    .step-grid > div::before {
+      counter-increment: s;
+      content: "Step " counter(s);
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--coral-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .step-grid h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
+
+    .step-grid p { color: var(--sand-dim); font-size: 0.98rem; }
+
+    @media (max-width: 900px) { .step-grid { grid-template-columns: 1fr; } }
+
+    /* contact / footer */
+    .close-cta { text-align: center; }
+
+    .close-cta h2 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 18ch; margin-inline: auto; }
+
+    .close-cta p { color: var(--sand-dim); max-width: 46ch; margin: 1.25rem auto 2.25rem; }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding-block: 3rem 2rem;
+      font-size: 0.92rem;
+      color: var(--sand-dim);
+    }
+
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .foot address { font-style: normal; line-height: 1.9; }
+
+    .foot .fine { width: 100%; padding-top: 1.5rem; font-size: 0.78rem; letter-spacing: 0.06em; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a class="mark" href="#top">Ocotillo <b>Ridge</b></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#residences">Residences</a>
+        <a href="#plans">Floor Plans</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#neighborhood">Neighborhood</a>
+        <a class="btn" href="#tour">Schedule a Tour</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero__bg">
+        <img src="../assets/img/foothills-goldenhour.jpg" alt="Homes stepped up a saguaro-covered hillside above Tucson, the city spreading out far below in golden-hour light" fetchpriority="high">
+      </div>
+      <div class="wrap">
+        <span class="kicker">Now preleasing · Catalina Foothills, Tucson</span>
+        <h1>Evenings look different from up here.</h1>
+        <p class="sub">
+          Two hundred forty residences set into the ridgeline above Tucson —
+          built for the hour the mountains turn copper and the city lights
+          come on below.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn" href="#plans">Find your floor plan</a>
+          <a class="btn btn--line" href="#tour">Schedule a tour</a>
+        </div>
+        <div class="hero__facts">
+          <div><strong>240</strong> residences</div>
+          <div><strong>Studio–3&nbsp;BR</strong> flats &amp; townhomes</div>
+          <div><strong>Fall 2026</strong> first move-ins</div>
+        </div>
+      </div>
+    </section>
+
+    <svg class="ridge" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40 L140 18 L230 32 L360 8 L480 30 L620 12 L760 34 L900 6 L1040 28 L1200 16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+    <!-- residences / finishes -->
+    <section id="residences">
+      <div class="wrap duo">
+        <div>
+          <span class="kicker">The residences</span>
+          <h2>Finished like a house you'd build yourself.</h2>
+          <p class="body">
+            Every home at Ocotillo Ridge starts from the same conviction: the
+            desert view deserves a room worthy of it. Interiors run quiet and
+            warm — pale oak underfoot, deep counters, glass where the
+            mountains are.
+          </p>
+        </div>
+        <ul class="finishes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M12 4v16M8 9h.01M16 9h.01"/></svg>
+            <div>
+              <strong>Custom walnut cabinetry</strong>
+              <p>Full-height uppers, soft-close everything, hardware in aged brass.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9Z"/><path d="M3 9l2-4h14l2 4"/></svg>
+            <div>
+              <strong>Honed quartz counters</strong>
+              <p>Waterfall islands in every one- to three-bedroom plan.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 5V3M12 21v-2M5 12H3m18 0h-2M6.6 6.6 5.2 5.2m13.6 13.6-1.4-1.4M6.6 17.4l-1.4 1.4M18.8 5.2l-1.4 1.4"/></svg>
+            <div>
+              <strong>Smart home, standard</strong>
+              <p>Keyless entry, learning thermostats, and pre-wired shades — no upcharge.</p>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 20h18M5 20V8l7-4 7 4v12"/><path d="M9 20v-6h6v6"/></svg>
+            <div>
+              <strong>Floor-to-ceiling glass</strong>
+              <p>South- and west-facing walls open to the ridgeline and the city grid.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- floor plans -->
+    <section class="plans" id="plans">
+      <div class="wrap">
+        <div class="plans__intro">
+          <span class="kicker">Floor plans</span>
+          <h2>Three ways to live on the ridge.</h2>
+          <p>
+            Eleven plans in all — these three set the tone. Every layout keeps
+            the living space on the view side.
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <h3>The Agave</h3>
+            <p class="spec">Studio · 1 bath · 612 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="Studio floor plan diagram: open living and sleeping space, kitchen along one wall, bath and closet at entry">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M10 70 H80 M80 10 V110 M80 110 H10" stroke-width="1.2"/>
+              <path d="M170 190 V150 M170 150 H250" stroke-width="1.2"/>
+              <path d="M80 40 A30 30 0 0 1 110 70" stroke-width="0.8" stroke-dasharray="3 3"/>
+              <text x="38" y="45" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BATH</text>
+              <text x="30" y="95" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">CLOSET</text>
+              <text x="140" y="100" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">LIVE / SLEEP</text>
+              <text x="192" y="175" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">KITCHEN</text>
+              <text x="96" y="26" font-family="Figtree, sans-serif" font-size="9" fill="currentColor" stroke="none">TERRACE →</text>
+            </svg>
+            <p class="rent">From $1,395 <span>/ month</span></p>
+            <a class="btn btn--line" href="#tour">Check availability</a>
+          </article>
+
+          <article class="plan">
+            <h3>The Cholla</h3>
+            <p class="spec">1 bed · 1 bath · 784 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="One-bedroom floor plan diagram: bedroom and bath on the left, open kitchen and living room on the right with terrace">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M100 10 V190" stroke-width="1.2"/>
+              <path d="M10 110 H100" stroke-width="1.2"/>
+              <path d="M100 140 A26 26 0 0 1 126 166" stroke-width="0.8" stroke-dasharray="3 3"/>
+              <path d="M160 10 V50 M160 50 H250" stroke-width="1.2"/>
+              <text x="34" y="65" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BED</text>
+              <text x="30" y="155" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BATH</text>
+              <text x="188" y="35" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">KITCHEN</text>
+              <text x="150" y="120" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">LIVING</text>
+              <text x="116" y="26" font-family="Figtree, sans-serif" font-size="9" fill="currentColor" stroke="none">TERRACE →</text>
+            </svg>
+            <p class="rent">From $1,795 <span>/ month</span></p>
+            <a class="btn btn--line" href="#tour">Check availability</a>
+          </article>
+
+          <article class="plan">
+            <h3>The Ocotillo</h3>
+            <p class="spec">2 bed · 2 bath · 1,148 sq ft</p>
+            <svg class="floor" viewBox="0 0 260 200" fill="none" stroke="currentColor" aria-label="Two-bedroom floor plan diagram: bedrooms on opposite corners, central open living and kitchen, two baths">
+              <rect x="10" y="10" width="240" height="180" stroke-width="2"/>
+              <path d="M90 10 V80 M90 80 H10" stroke-width="1.2"/>
+              <path d="M170 190 V120 M170 120 H250" stroke-width="1.2"/>
+              <path d="M10 130 H60 M60 130 V190" stroke-width="1.2"/>
+              <path d="M210 10 V60 M210 60 H250" stroke-width="1.2"/>
+              <text x="28" y="50" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BED 1</text>
+              <text x="18" y="165" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BATH</text>
+              <text x="196" y="165" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BED 2</text>
+              <text x="216" y="40" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">BATH</text>
+              <text x="105" y="110" font-family="Figtree, sans-serif" font-size="10" fill="currentColor" stroke="none">LIVING / KITCHEN</text>
+            </svg>
+            <p class="rent">From $2,450 <span>/ month</span></p>
+            <a class="btn btn--line" href="#tour">Check availability</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- amenities -->
+    <section class="amenities" id="amenities">
+      <div class="wrap">
+        <span class="kicker">Amenities</span>
+        <h2>Made for the golden hour, and every other one.</h2>
+        <ul class="amenity-grid">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M6 12V6a3 3 0 0 1 6 0"/></svg>
+            <strong>Ridgeline pool</strong>
+            <p>A 75-foot lap edge aimed straight at the sunset, heated year-round.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 21c-2 0-3.5-1.6-3.5-3.6C4.5 14 8 10 12 5c4 5 7.5 9 7.5 12.4 0 2-1.5 3.6-3.5 3.6"/><path d="M12 21v-5"/></svg>
+            <strong>Sunset terrace</strong>
+            <p>Fire tables, ramada shade, and the whole valley for a backdrop.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 12h2m12 0h2M7 9v6m10-6v6"/><rect x="9" y="7" width="6" height="10" rx="1"/></svg>
+            <strong>Fitness &amp; yoga studio</strong>
+            <p>Strength floor, spin room, and a dawn-lit yoga deck.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M3 13h18M8 21h8"/></svg>
+            <strong>Work-from-ridge suites</strong>
+            <p>Bookable offices and conference nooks with fiber to every desk.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6a3 3 0 0 1 6 0v6"/></svg>
+            <strong>Ramada kitchens</strong>
+            <p>Outdoor grills and long tables under mesquite shade.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 20 10 4l4 9 3-5 3 12"/></svg>
+            <strong>Trailhead access</strong>
+            <p>A private gate onto the ridge loop — 4.2 miles of high desert.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="8" width="12" height="10" rx="1.5"/><path d="M16 11h2.5a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 1-3 0"/><path d="M8 8V6a2 2 0 0 1 4 0v2"/></svg>
+            <strong>EV charging</strong>
+            <p>Level-2 chargers in the garage, expandable as the community grows.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="6" r="2.4"/><circle cx="17" cy="9" r="1.6"/><path d="M5 21c0-4 2.5-7 6-7 2.4 0 4.4 1.4 5.4 3.6"/></svg>
+            <strong>Pet run &amp; wash</strong>
+            <p>A shaded run at the quiet end of the site, plus a proper wash bay.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- neighborhood -->
+    <section class="hood" id="neighborhood">
+      <div class="wrap duo">
+        <figure>
+          <img src="../assets/img/foothills-community.jpg" alt="Overhead view of a foothills community, flat-roofed homes tucked against the desert hillside" loading="lazy">
+          <figcaption>The neighborhood, from the ridge</figcaption>
+        </figure>
+        <div>
+          <span class="kicker">The neighborhood</span>
+          <h2>High ground, close to everything.</h2>
+          <p class="body">
+            Ocotillo Ridge sits where the city meets the Catalinas — trailheads
+            in one direction, Tucson's best dinner reservation in the other.
+          </p>
+          <ul class="distances">
+            <li>Sabino Canyon trailhead <span class="min">8 min</span></li>
+            <li>La Encantada shops &amp; dining <span class="min">6 min</span></li>
+            <li>St. Philip's Plaza farmers market <span class="min">10 min</span></li>
+            <li>University of Arizona <span class="min">18 min</span></li>
+            <li>Downtown Tucson <span class="min">20 min</span></li>
+            <li>Tucson International Airport <span class="min">30 min</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- testimonials -->
+    <section class="voices">
+      <div class="wrap">
+        <span class="kicker">Resident voices</span>
+        <h2>Word travels down the mountain.</h2>
+        <div class="voice-grid">
+          <div class="voice">
+            <blockquote>
+              "We toured at 5 p.m. on purpose — the leasing team told us to.
+              By the time the sun hit the ridge we'd already picked a floor plan."
+            </blockquote>
+            <cite>Dana &amp; Marcus · The Ocotillo, 4th floor</cite>
+          </div>
+          <div class="voice">
+            <blockquote>
+              "I work east-coast hours from the ridge suites and I'm on the
+              trail by 3. Nothing about my old commute survives comparison."
+            </blockquote>
+            <cite>Priya · The Cholla</cite>
+          </div>
+          <div class="voice">
+            <blockquote>
+              "The finishes are the real thing — the walnut, the quartz, all
+              of it. My mother walked in and asked who my contractor was."
+            </blockquote>
+            <cite>Robert · The Agave</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- leasing steps -->
+    <section class="steps">
+      <div class="wrap">
+        <span class="kicker">Leasing</span>
+        <h2>Three steps to the ridge.</h2>
+        <div class="step-grid">
+          <div>
+            <h3>Find your floor plan</h3>
+            <p>Browse the eleven layouts, shortlist your favorites, and check live availability by building and floor.</p>
+          </div>
+          <div>
+            <h3>Tour &amp; apply</h3>
+            <p>Walk it in person or by video — golden hour tours encouraged. Apply online in about ten minutes.</p>
+          </div>
+          <div>
+            <h3>Take the keys</h3>
+            <p>Approved within two business days, keys on your schedule, and the sunset's included.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- closing CTA -->
+    <section class="close-cta" id="tour">
+      <div class="wrap">
+        <span class="kicker">Schedule a tour</span>
+        <h2>Come up for the evening.</h2>
+        <p>
+          Tours run daily, and the 5 p.m. slots go first — for good reason.
+          Tell us when, and we'll meet you at the gate.
+        </p>
+        <a class="btn" href="mailto:lease@ocotilloridge.example">Schedule a tour</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <address>
+        <strong style="font-family:var(--serif);font-weight:400;letter-spacing:0.08em;">OCOTILLO RIDGE</strong><br>
+        4880 E. Ridgeline Way, Tucson, AZ 85718<br>
+        (520) 555-0182 · lease@ocotilloridge.example
+      </address>
+      <div>
+        Leasing gallery open daily<br>
+        9 a.m. – 6 p.m. MST
+      </div>
+      <p class="fine">
+        Ocotillo Ridge is a fictional community, designed and written by AZRE as
+        a demonstration build. Pricing and details are illustrative.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
