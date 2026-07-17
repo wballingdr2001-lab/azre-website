@@ -1836,42 +1836,6 @@ a.contact-block__value:hover {
   max-width: 52ch;
 }
 
-.tier-price {
-  text-align: right;
-  border-top: 2px solid var(--ink);
-  padding-top: 0.9rem;
-  min-width: 9rem;
-}
-
-.tier-price strong {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 118%;
-  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-
-.tier-price span {
-  display: block;
-  margin-top: 0.35rem;
-  font-family: var(--font-display);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.tier-price--premium {
-  border-top-color: var(--lastlight);
-}
-
-.tier-price--premium strong {
-  color: var(--lastlight);
-}
-
 .includes {
   background: var(--plaster);
   border: 1px solid var(--line);
@@ -1959,7 +1923,6 @@ a.contact-block__value:hover {
 }
 
 .compare tbody th[scope="row"],
-.compare thead .compare__price th[scope="row"],
 .compare tfoot th[scope="row"] {
   font-family: var(--font-display);
   font-size: 0.8rem;
@@ -1968,13 +1931,6 @@ a.contact-block__value:hover {
   text-transform: uppercase;
   color: var(--ink-soft);
   max-width: 15rem;
-}
-
-.compare__price td {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 118%;
-  font-size: 1.35rem;
 }
 
 .compare .yes {
@@ -2016,10 +1972,6 @@ a.contact-block__value:hover {
 @media (max-width: 767px) {
   .tier-head {
     grid-template-columns: 1fr;
-  }
-
-  .tier-price {
-    text-align: left;
   }
 }
 

@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Copper Ridge Apartments — Modern One &amp; Two Bedrooms, South Tucson Rise</title>
   <meta name="description" content="Copper Ridge: 204 modern apartments on the rise south of downtown Tucson. Skyline views, workspaces that work, and rents that leave room for a life.">
+  <!-- Google Analytics · GA4 — the client's measurement ID is wired here at launch -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-DEMO0000"); /* placeholder — no data leaves this demo */
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Rubik:ital,wght@0,300..600;1,300..600&display=swap" rel="stylesheet">
@@ -230,10 +237,12 @@
     <div class="wrap bar">
       <a class="logo" href="#top"><i aria-hidden="true"></i>Copper Ridge</a>
       <nav class="links" aria-label="Primary">
+        <a href="#top">Home</a>
         <a href="#amenities">Amenities</a>
         <a href="#plans">Floor Plans</a>
         <a href="#gallery">Gallery</a>
         <a href="#location">Location</a>
+        <a href="#tour">Contact</a>
       </nav>
       <a class="btn btn--copper" href="#tour">Schedule a Tour</a>
     </div>
@@ -434,6 +443,14 @@
               <input id="t-email" name="email" type="email" autocomplete="email" required>
             </div>
             <div>
+              <label for="t-reason">What do you need?</label>
+              <select id="t-reason" name="reason">
+                <option>Schedule a tour</option>
+                <option>General question</option>
+                <option>Pricing &amp; availability</option>
+              </select>
+            </div>
+            <div>
               <label for="t-plan">Plan</label>
               <select id="t-plan" name="plan">
                 <option>Plan A — studio</option>
@@ -458,6 +475,10 @@
               <li><b>03</b> We reply within one business day</li>
             </ul>
             <a class="btn btn--copper" href="#tour">Apply Now</a>
+            <p style="margin-top: 1.2rem; font-size: 0.92rem; color: #aeb9ae">
+              Or talk to a human: (520) 555-0204 ·
+              <a href="mailto:hello@copperridge.demo" style="color: var(--copper-hot)">hello@copperridge.demo</a>
+            </p>
           </div>
         </div>
       </div>

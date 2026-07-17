@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sonoran Flats Apartments — One &amp; Two Bedrooms in East Tucson</title>
   <meta name="description" content="Sonoran Flats is a garden-style community of 168 apartments on Tucson's east side. One and two bedrooms with desert courtyards, a saltwater pool, and covered parking.">
+  <!-- Google Analytics · GA4 — the client's measurement ID is wired here at launch -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-DEMO0000"); /* placeholder — no data leaves this demo */
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300..700&display=swap" rel="stylesheet">
@@ -286,10 +293,12 @@
     <div class="wrap bar">
       <a class="logo" href="#top">Sonoran <span>Flats</span></a>
       <nav class="links" aria-label="Primary">
+        <a href="#top">Home</a>
         <a href="#residences">Residences</a>
         <a href="#amenities">Amenities</a>
         <a href="#gallery">Gallery</a>
         <a href="#neighborhood">Neighborhood</a>
+        <a href="#tour">Contact</a>
       </nav>
       <a class="btn btn--solid" href="#tour">Schedule a Tour</a>
     </div>
@@ -502,6 +511,14 @@
               <input id="t-email" name="email" type="email" autocomplete="email" required>
             </div>
             <div>
+              <label for="t-reason">How can we help?</label>
+              <select id="t-reason" name="reason">
+                <option>Schedule a tour</option>
+                <option>General question</option>
+                <option>Pricing &amp; availability</option>
+              </select>
+            </div>
+            <div>
               <label for="t-when">Preferred day</label>
               <select id="t-when" name="when">
                 <option>This week</option>
@@ -514,7 +531,7 @@
               <label for="t-notes">Anything we should know?</label>
               <textarea id="t-notes" name="notes" placeholder="Floor plan, move-in month, pets…"></textarea>
             </div>
-            <button class="btn btn--solid" type="submit">Schedule a Tour</button>
+            <button class="btn btn--solid" type="submit">Send it over</button>
             <p class="tour-confirm" role="status" id="tour-confirm">Thanks — the leasing team will confirm your tour by email shortly.</p>
           </form>
           <div class="tour-side">
