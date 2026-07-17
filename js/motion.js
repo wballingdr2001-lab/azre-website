@@ -91,80 +91,117 @@
     });
   };
 
-  /* ---------- 2 · page-load sequence ---------- */
+  /* ---------- 2 · page-load sequence (reveal-safe) ----------
+     Content is visible by default. Intro targets are hidden ONLY when the
+     reveal is certain to run this frame (a foreground tab), and every path
+     ends visible — a slow/blocked font load, a backgrounded tab (rAF paused),
+     or a thrown SplitText can never leave the hero or nav stuck blank. */
 
-  var intro = function () {
-    var hero = document.querySelector(".hero__grid") || document.querySelector(".page-hero .container");
-    if (!hero) return;
+  var heroEl = document.querySelector(".hero__grid") || document.querySelector(".page-hero .container");
+  var introTargets = heroEl ? {
+    h1: heroEl.querySelector("h1"),
+    eyebrow: heroEl.querySelector(".eyebrow"),
+    support: heroEl.querySelectorAll(".hero__copy, .page-hero .lede, .hero__ctas, .hero__local, .tier-jump"),
+    photo: document.querySelector(".hero__grid .photo"),
+    header: document.querySelectorAll(".site-header .brand, .site-header .nav-toggle, .site-nav > a")
+  } : null;
 
-    var h1 = hero.querySelector("h1");
-    var eyebrow = hero.querySelector(".eyebrow");
-    var support = hero.querySelectorAll(".hero__copy, .page-hero .lede, .hero__ctas, .hero__local, .tier-jump");
-    var photo = document.querySelector(".hero__grid .photo");
-    var headerBits = document.querySelectorAll(".site-header .brand, .site-header .nav-toggle, .site-nav > a");
+  var hideable = function () {
+    var els = [];
+    if (!introTargets) return els;
+    if (introTargets.eyebrow) els.push(introTargets.eyebrow);
+    introTargets.support.forEach(function (e) { els.push(e); });
+    introTargets.header.forEach(function (e) { els.push(e); });
+    return els;
+  };
 
-    var tl = gsap.timeline({ defaults: { ease: E.enter } });
-
-    // headline: masked lines, the heaviest element, longest duration
-    if (h1) {
-      SplitText.create(h1, {
-        type: "lines",
-        mask: "lines",
-        linesClass: "msk-line",
-        autoSplit: true,
-        onSplit: function (self) {
-          return gsap.fromTo(self.lines,
-            { yPercent: 110 },
-            { yPercent: 0, duration: 1.1, ease: E.enter, stagger: 0.08, delay: 0.25 });
-        }
-      });
-    }
-
-    if (eyebrow) tl.fromTo(eyebrow, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.1);
-
-    // header settles on its own offset clock — a sequence, not a pop
-    if (headerBits.length) {
-      tl.fromTo(headerBits, { autoAlpha: 0, y: -10 },
-        { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.05 }, 0.45);
-    }
-
-    // support copy: lighter mass, shorter travel
-    if (support.length) {
-      tl.fromTo(support, { autoAlpha: 0, y: 24 },
-        { autoAlpha: 1, y: 0, duration: 0.75, stagger: 0.09 }, 0.62);
-    }
-
-    // hero photograph: clip reveal + counter-scale, never a fade
-    if (photo) {
-      var img = photo.querySelector("img");
-      var cap = photo.querySelector("figcaption");
-      tl.fromTo(photo, { clipPath: "inset(100% 0% 0% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2 }, 0.35);
-      if (img) tl.fromTo(img, { scale: 1.15 }, { scale: 1, duration: 1.2 }, 0.35);
-      if (cap) tl.fromTo(cap, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 1.15);
+  // Force every intro target to its natural, visible state. Idempotent.
+  var showAllInstant = function () {
+    if (!introTargets) return;
+    var els = hideable();
+    if (els.length) gsap.set(els, { clearProps: "opacity,visibility,transform" });
+    if (introTargets.h1) gsap.set(introTargets.h1, { clearProps: "opacity,visibility" });
+    if (introTargets.photo) {
+      gsap.set(introTargets.photo, { clearProps: "clipPath" });
+      var pimg = introTargets.photo.querySelector("img");
+      var pcap = introTargets.photo.querySelector("figcaption");
+      if (pimg) gsap.set(pimg, { clearProps: "transform" });
+      if (pcap) gsap.set(pcap, { clearProps: "opacity,visibility" });
     }
   };
 
-  // pre-hide intro targets in the same task to avoid a flash, then wait on fonts
-  (function () {
-    var hero = document.querySelector(".hero__grid") || document.querySelector(".page-hero .container");
-    if (!hero) return;
-    gsap.set(hero.querySelectorAll(".eyebrow, .hero__copy, .page-hero .lede, .hero__ctas, .hero__local, .tier-jump"), { autoAlpha: 0 });
-    gsap.set(document.querySelectorAll(".site-header .brand, .site-header .nav-toggle, .site-nav > a"), { autoAlpha: 0 });
-    var h1 = hero.querySelector("h1");
-    if (h1) gsap.set(h1, { autoAlpha: 0 }); // unhidden by SplitText's first frame
-    var photo = document.querySelector(".hero__grid .photo");
-    if (photo) gsap.set(photo, { clipPath: "inset(100% 0% 0% 0%)" });
-  })();
+  var animateIntro = function () {
+    if (!introTargets) return;
+    try {
+      var t = introTargets;
+      var tl = gsap.timeline({ defaults: { ease: E.enter } });
 
-  document.fonts.ready.then(function () {
-    var hero = document.querySelector(".hero__grid") || document.querySelector(".page-hero .container");
-    if (hero) {
-      var h1 = hero.querySelector("h1");
-      if (h1) gsap.set(h1, { autoAlpha: 1 });
+      // headline: masked lines, the heaviest element, longest duration.
+      // h1 is set visible first so a failed split still shows the text.
+      if (t.h1) {
+        gsap.set(t.h1, { autoAlpha: 1 });
+        SplitText.create(t.h1, {
+          type: "lines", mask: "lines", linesClass: "msk-line", autoSplit: true,
+          onSplit: function (self) {
+            return gsap.fromTo(self.lines, { yPercent: 110 },
+              { yPercent: 0, duration: 1.1, ease: E.enter, stagger: 0.08, delay: 0.25 });
+          }
+        });
+      }
+
+      if (t.eyebrow) tl.fromTo(t.eyebrow, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.55 }, 0.1);
+
+      // header settles on its own offset clock — a sequence, not a pop
+      if (t.header.length) tl.fromTo(t.header, { autoAlpha: 0, y: -10 },
+        { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.05 }, 0.45);
+
+      // support copy: lighter mass, shorter travel
+      if (t.support.length) tl.fromTo(t.support, { autoAlpha: 0, y: 24 },
+        { autoAlpha: 1, y: 0, duration: 0.75, stagger: 0.09 }, 0.62);
+
+      // hero photograph: clip reveal + counter-scale, never a fade
+      if (t.photo) {
+        var img = t.photo.querySelector("img");
+        var cap = t.photo.querySelector("figcaption");
+        tl.fromTo(t.photo, { clipPath: "inset(100% 0% 0% 0%)" },
+          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.2 }, 0.35);
+        if (img) tl.fromTo(img, { scale: 1.15 }, { scale: 1, duration: 1.2 }, 0.35);
+        if (cap) tl.fromTo(cap, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 1.15);
+      }
+
+      // whatever the timeline does, targets end fully visible
+      tl.eventCallback("onComplete", showAllInstant);
+    } catch (e) {
+      showAllInstant();
     }
-    intro();
+  };
+
+  var introDone = false;
+  var runReveal = function () {
+    if (introDone || !introTargets) return;
+    introDone = true;
+    if (document.hidden) { showAllInstant(); return; } // no rAF in a background tab
+    animateIntro();
     ScrollTrigger.refresh();
+  };
+
+  // Hide the intro targets only when the reveal is about to run in the foreground.
+  if (introTargets && !document.hidden) {
+    var preHide = hideable();
+    if (preHide.length) gsap.set(preHide, { autoAlpha: 0 });
+    if (introTargets.h1) gsap.set(introTargets.h1, { autoAlpha: 0 });
+    if (introTargets.photo) gsap.set(introTargets.photo, { clipPath: "inset(100% 0% 0% 0%)" });
+  }
+
+  // Reveal on the first of: fonts ready, a 500ms cap, or a 1200ms hard backstop.
+  // A tab loaded in the background reveals (instantly) the moment it is shown.
+  Promise.race([
+    (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve(),
+    new Promise(function (res) { setTimeout(res, 500); })
+  ]).then(runReveal);
+  setTimeout(runReveal, 1200);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) runReveal();
   });
 
   /* ---------- 3 · signature moment: the deck (home only, wide screens) ---------- */
