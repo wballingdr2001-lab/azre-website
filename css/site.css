@@ -2128,24 +2128,6 @@ html.motion-off *::after {
   position: relative;
 }
 
-.deck__count {
-  display: none;
-  align-items: baseline;
-  gap: 0.4rem;
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--ink-soft);
-  margin-bottom: 1.25rem;
-}
-
-.deck__count [data-deck-num] {
-  font-size: 1.4rem;
-  color: var(--lastlight);
-  font-variant-numeric: tabular-nums;
-}
-
 .deck-item {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -2160,32 +2142,6 @@ html.motion-off *::after {
 
 .deck__cta {
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-/* live mode: cards stack and peel under the pin */
-.deck--live {
-  overflow: hidden;
-}
-
-.deck--live .deck__count {
-  display: inline-flex;
-}
-
-.deck--live .deck__stage {
-  height: min(72vh, 700px);
-}
-
-.deck--live .deck-item {
-  position: absolute;
-  inset: 0;
-  padding-block: 0;
-  border-top: none;
-  background: var(--paper);
-  will-change: transform;
-}
-
-.deck--live .deck-item .win {
-  max-height: 100%;
 }
 
 @media (max-width: 899px) {

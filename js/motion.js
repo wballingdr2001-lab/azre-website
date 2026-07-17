@@ -204,7 +204,11 @@
     if (!document.hidden) runReveal();
   });
 
-  /* ---------- 3 · signature moment: the deck (home only, wide screens) ---------- */
+  /* ---------- 3 · the deck (home): normal flow, window/meta reveals ----------
+     Formerly a pinned scroll-scrubbed card stack. Unpinned so the homepage
+     scrolls like every other page — the pin read as "stuck/broken" and
+     clipped on short laptop viewports. The three cards keep the same split
+     window/meta reveal vocabulary the gallery page uses. */
 
   var mm = gsap.matchMedia();
 
@@ -212,70 +216,20 @@
   if (deckEl) {
     deckEl.querySelectorAll(".reveal").forEach(function (el) { claimed.add(el); });
 
-    mm.add("(min-width: 900px)", function () {
-      var stage = deckEl.querySelector(".deck__stage");
-      var items = gsap.utils.toArray(deckEl.querySelectorAll(".deck-item"));
-      var counter = deckEl.querySelector("[data-deck-num]");
-      if (items.length < 2) return;
-
-      deckEl.classList.add("deck--live");
-
-      // stack order: first card on top
-      items.forEach(function (item, i) {
-        gsap.set(item, { zIndex: items.length - i });
-        if (i > 0) gsap.set(item, { scale: 0.955, yPercent: 3.2 });
-      });
-
-      var tl = gsap.timeline();
-      items.forEach(function (item, i) {
-        if (i === items.length - 1) return;
-        var next = items[i + 1];
-        var at = i * 1.3;
-        // departing card accelerates out; arriving card settles under it
-        tl.to(item, { yPercent: -112, duration: 1, ease: "power1.in" }, at)
-          .to(item, { autoAlpha: 0, duration: 0.28, ease: "none" }, at + 0.72)
-          .to(next, { scale: 1, yPercent: 0, duration: 1, ease: "none" }, at)
-          .fromTo(next.querySelectorAll(".deck-item__meta > *"),
-            { autoAlpha: 0, y: 26 },
-            { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.06, ease: "none" }, at + 0.55);
-      });
-      tl.to({}, { duration: 0.5 }); // settle hold on the last card
-
-      var st = ScrollTrigger.create({
-        trigger: deckEl,
-        start: "top top+=76",
-        end: "+=230%",
-        pin: true,
-        scrub: 1,
-        animation: tl,
-        onUpdate: function (self) {
-          if (!counter) return;
-          var idx = Math.min(items.length - 1, Math.floor(self.progress * (items.length - 0.35)));
-          var label = "0" + (idx + 1);
-          if (counter.textContent !== label) counter.textContent = label;
-        }
-      });
-
-      return function () {
-        deckEl.classList.remove("deck--live");
-        st.kill();
-        tl.kill();
-        gsap.set(items, { clearProps: "all" });
-        items.forEach(function (item) {
-          gsap.set(item.querySelectorAll(".deck-item__meta > *"), { clearProps: "all" });
-        });
-      };
+    gsap.utils.toArray(deckEl.querySelectorAll(".deck-item")).forEach(function (item) {
+      var win = item.querySelector(".work-item__window");
+      var meta = item.querySelectorAll(".deck-item__meta > *");
+      var stTrig = { trigger: item, start: "top 82%", once: true };
+      if (win) gsap.fromTo(win, { autoAlpha: 0, yPercent: 6 },
+        { autoAlpha: 1, yPercent: 0, duration: 1.0, ease: E.enter, scrollTrigger: stTrig });
+      if (meta.length) gsap.fromTo(meta, { autoAlpha: 0, y: 22 },
+        { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07, delay: 0.12, ease: E.enter, scrollTrigger: stTrig });
     });
 
-    // narrow screens: the deck is a normal stacked list with plain reveals
-    mm.add("(max-width: 899px)", function () {
-      var items = deckEl.querySelectorAll(".deck-item");
-      items.forEach(function (item) {
-        gsap.fromTo(item, { autoAlpha: 0, y: 30 }, {
-          autoAlpha: 1, y: 0, duration: 0.8, ease: E.enter,
-          scrollTrigger: { trigger: item, start: "top 88%", once: true }
-        });
-      });
+    var deckCta = deckEl.querySelector(".deck__cta");
+    if (deckCta) gsap.fromTo(deckCta, { autoAlpha: 0, y: 22 }, {
+      autoAlpha: 1, y: 0, duration: 0.7, ease: E.enter,
+      scrollTrigger: { trigger: deckCta, start: "top 92%", once: true }
     });
   }
 
