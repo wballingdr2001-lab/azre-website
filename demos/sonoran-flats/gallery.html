@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Sonoran Flats Apartments</title>
+  <meta name="description" content="Sonoran Flats is a garden-style community of 168 apartments on Tucson's east side. One and two bedrooms with desert courtyards, a saltwater pool, and covered parking.">
+  <!-- Google Analytics · GA4 — the client's measurement ID is wired here at launch -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-DEMO0000"); /* placeholder — no data leaves this demo */
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf6ef;
+      --shade: #f1e9dc;
+      --ink: #2e2a25;
+      --ink-2: #6f675c;
+      --clay: #c96f4a;
+      --clay-deep: #a95737;
+      --cactus: #6b7f5c;
+      --line: #e3d9c8;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Inter", "Helvetica Neue", sans-serif;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 350;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--clay-deep); }
+    :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+
+    .wrap { max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.12; }
+
+    .kicker {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--cactus);
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.7rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      border: 1.5px solid transparent;
+    }
+
+    .btn--solid { background: var(--clay); color: #fff; }
+    .btn--solid:hover { background: var(--clay-deep); }
+    .btn--line { border-color: var(--ink); color: var(--ink); }
+    .btn--line:hover { background: var(--ink); color: var(--cream); }
+
+    /* header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250, 246, 239, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-block: 1rem;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .logo span { color: var(--clay); font-style: italic; }
+
+    nav.links { display: flex; gap: 1.6rem; }
+    nav.links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink-2);
+    }
+    nav.links a:hover { color: var(--clay-deep); }
+
+    .bar .btn { padding: 0.6rem 1.25rem; }
+
+    /* hero */
+    .hero { position: relative; }
+    .hero img { width: 100%; height: clamp(420px, 62vh, 620px); object-fit: cover; }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(10deg, rgba(46, 42, 37, 0.62) 0%, rgba(46, 42, 37, 0.05) 55%);
+    }
+    .hero__card {
+      position: absolute;
+      left: 0; right: 0; bottom: clamp(2rem, 6vw, 4rem);
+      z-index: 2;
+      color: var(--cream);
+    }
+    .hero__card .kicker { color: #f0b9a0; }
+    .hero__card h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); max-width: 14ch; }
+    .hero__card p { margin-top: 1rem; max-width: 46ch; font-size: 1.12rem; color: rgba(250, 246, 239, 0.9); }
+    .hero__ctas { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .hero__ctas .btn--line { border-color: var(--cream); color: var(--cream); }
+    .hero__ctas .btn--line:hover { background: var(--cream); color: var(--ink); }
+
+    section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+
+    .section-head { max-width: 620px; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+    .section-head h2 { font-size: clamp(1.8rem, 3.8vw, 2.7rem); }
+    .section-head p { margin-top: 0.9rem; color: var(--ink-2); }
+
+    /* overview strip */
+    .facts {
+      background: var(--shade);
+      border-block: 1px solid var(--line);
+      padding-block: 1.6rem;
+    }
+    .facts .wrap { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 5vw, 4rem); justify-content: space-between; }
+    .fact strong { font-family: var(--serif); font-size: 1.6rem; display: block; }
+    .fact span { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
+
+    /* amenities */
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    .amen {
+      padding: 1.6rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .amen svg { width: 30px; height: 30px; stroke: var(--cactus); margin-bottom: 0.9rem; }
+    .amen h3 { font-size: 1.18rem; margin-bottom: 0.35rem; }
+    .amen p { font-size: 0.96rem; color: var(--ink-2); }
+
+    /* floor plans */
+    .plans { background: var(--shade); border-block: 1px solid var(--line); }
+    .plan-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    .plan {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .plan svg { width: 100%; height: auto; background: var(--cream); border-bottom: 1px solid var(--line); }
+    .plan__body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .plan__body h3 { font-size: 1.25rem; }
+    .plan__spec { margin-top: 0.3rem; font-size: 0.9rem; color: var(--ink-2); }
+    .plan__rent { margin-top: 0.8rem; font-family: var(--serif); font-size: 1.3rem; color: var(--clay-deep); }
+    .plan__body .btn { margin-top: auto; align-self: flex-start; margin-top: 1.2rem; padding: 0.55rem 1.2rem; font-size: 0.78rem; }
+
+    /* gallery */
+    .gal {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    .gal figure { border-radius: 12px; overflow: hidden; position: relative; }
+    .gal img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .gal figure:hover img { transform: scale(1.04); }
+    .gal figcaption {
+      position: absolute; left: 0.9rem; bottom: 0.7rem;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+    }
+    .gal .g-warm img { filter: sepia(0.22) saturate(1.1); }
+    .gal .g-dusk img { filter: hue-rotate(-8deg) saturate(0.95); }
+
+    /* map + neighborhood */
+    .near { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+    .map-ph {
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(rgba(107,127,92,0.08), rgba(107,127,92,0.08)),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(46,42,37,0.07) 38px 39px),
+        repeating-linear-gradient(90deg, transparent 0 38px, rgba(46,42,37,0.07) 38px 39px),
+        #f4efe4;
+      min-height: 340px;
+      position: relative;
+    }
+    .map-pin {
+      position: absolute; top: 46%; left: 52%;
+      transform: translate(-50%, -100%);
+      text-align: center;
+    }
+    .map-pin svg { width: 34px; height: 34px; fill: var(--clay); }
+    .map-pin span {
+      display: block; margin-top: 0.2rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 0.25rem 0.55rem;
+    }
+    .map-note { position: absolute; bottom: 0.8rem; left: 0.9rem; font-size: 0.75rem; color: var(--ink-2); }
+    .near ul { list-style: none; margin-top: 1.4rem; }
+    .near li { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; border-bottom: 1px solid var(--line); font-size: 0.98rem; }
+    .near li span:last-child { color: var(--ink-2); white-space: nowrap; }
+
+    /* tour form */
+    .tour { background: var(--ink); color: var(--cream); }
+    .tour .kicker { color: #f0b9a0; }
+    .tour .section-head h2 { color: var(--cream); }
+    .tour .section-head p { color: rgba(250, 246, 239, 0.72); }
+    .tour-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.5rem); }
+    .tour form { display: grid; gap: 1rem; }
+    .tour label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+    .tour input, .tour select, .tour textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font: inherit;
+      color: var(--ink);
+      background: var(--cream);
+      border: none;
+      border-radius: 8px;
+    }
+    .tour textarea { min-height: 96px; resize: vertical; }
+    .tour .btn--solid { justify-self: start; border: none; cursor: pointer; }
+    .tour-side h3 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+    .tour-side p { color: rgba(250, 246, 239, 0.78); font-size: 0.98rem; }
+    .tour-side .hours { margin-top: 1.6rem; border-top: 1px solid rgba(250,246,239,0.2); padding-top: 1.2rem; font-size: 0.95rem; }
+    .tour-confirm { margin-top: 0.6rem; font-size: 0.95rem; color: #f0b9a0; display: none; }
+    .tour-confirm.show { display: block; }
+
+    /* footer */
+    footer { background: var(--shade); border-top: 1px solid var(--line); padding-block: 2.5rem; font-size: 0.9rem; color: var(--ink-2); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+    .demo-note { max-width: 62ch; }
+    .demo-note strong { color: var(--ink); }
+
+    @media (max-width: 900px) {
+      nav.links { display: none; }
+      .amenities-grid, .plan-row, .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .near, .tour-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .amenities-grid, .plan-row, .gal { grid-template-columns: 1fr; }
+      .facts .wrap { gap: 1.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap bar">
+      <a class="logo" href="index.html">Sonoran <span>Flats</span></a>
+      <nav class="links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="residences.html">Residences</a>
+        <a href="amenities.html">Amenities</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
+        <a href="neighborhood.html">Neighborhood</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="btn btn--solid" href="contact.html">Schedule a Tour</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Gallery</span>
+          <h2>Golden hour is a daily amenity.</h2>
+        </div>
+        <div class="gal">
+          <figure>
+            <img src="../../assets/img/sonoran-path.jpg" alt="Walking path through desert landscaping" loading="lazy">
+            <figcaption>Courtyard paths</figcaption>
+          </figure>
+          <figure class="g-warm">
+            <img src="../../assets/img/foothills-community.jpg" alt="Aerial view of the community at golden hour" loading="lazy">
+            <figcaption>From above</figcaption>
+          </figure>
+          <figure class="g-dusk">
+            <img src="../../assets/img/midtown-catalinas.jpg" alt="Rooftops with the Catalina mountains beyond" loading="lazy">
+            <figcaption>Catalina views</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="demo-note">
+        <strong>Sonoran Flats is a fictional community</strong>, designed and written by
+        AZRE as a portfolio demonstration of the Professional Website package.
+        No apartments are offered here — but yours could be.
+      </p>
+      <p>A demo by AZRE · Tucson, Arizona</p>
+    </div>
+  </footer>
+
+</body>
+</html>

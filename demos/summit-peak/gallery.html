@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Summit Peak Luxury Apartments — Mount Lemmon Highway, Tucson</title>
+  <title>Gallery — Summit Peak Luxury Apartments</title>
   <meta name="description" content="Summit Peak: 72 luxury apartments where Tucson starts climbing toward Mount Lemmon. Pine air, granite views, twenty minutes from downtown.">
   <!-- Enhanced SEO: social cards + structured data -->
   <meta property="og:type" content="website">
@@ -239,127 +239,23 @@
 
   <header>
     <div class="wrap bar">
-      <a class="logo" href="#top">
+      <a class="logo" href="index.html">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 26 14 8l5 9 3-5 6 14z" fill="#2f4a3c"/><path d="M14 8l5 9-2.5 4.5L14 26H4z" fill="#d99a3d" opacity="0.85"/></svg>
         <span><b>Summit Peak</b><small>Luxury Apartments</small></span>
       </a>
       <nav class="links" aria-label="Primary">
-        <a href="#top">Home</a>
-        <a href="#grounds">The Grounds</a>
-        <a href="#plans">Residences</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#tour-virtual">Virtual Tour</a>
-        <a href="#basecamp">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="grounds.html">The Grounds</a>
+        <a href="residences.html">Residences</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
+        <a href="virtual-tour.html">Virtual Tour</a>
+        <a href="contact.html">Contact</a>
       </nav>
-      <a class="btn btn--pine" href="#basecamp">Schedule a Tour</a>
+      <a class="btn btn--pine" href="contact.html">Schedule a Tour</a>
     </div>
   </header>
 
   <main id="top">
-
-    <div class="hero">
-      <img src="../assets/img/foothills-community.jpg" alt="The community set against the climbing foothills at dusk" width="1280" height="853">
-      <div class="hero__alt" aria-hidden="true"><b>3,110 ft</b>elevation</div>
-      <div class="wrap">
-        <span class="kicker">Mount Lemmon Highway · Tucson</span>
-        <h1>Live where the desert starts <em>climbing.</em></h1>
-        <p class="lede">
-          Seventy-two residences at the base of the Catalina Highway — pine air
-          drifting down the mountain, granite views out every window, downtown
-          in twenty easy minutes.
-        </p>
-        <div class="hero__ctas">
-          <a class="btn btn--amber" href="#basecamp">Schedule a Tour</a>
-          <a class="btn btn--out" style="border-color: #efeae2; color: #efeae2" href="#basecamp">Apply Now</a>
-        </div>
-      </div>
-    </div>
-
-    <section class="trail" id="grounds">
-      <div class="wrap">
-        <div class="section-head fade">
-          <span class="kicker">The grounds</span>
-          <h2>An amenity trail, not an amenity list.</h2>
-          <p>The grounds are laid out as a half-mile loop. Tap a stop to walk it.</p>
-        </div>
-        <div class="trail-grid fade">
-          <div class="trail-map">
-            <svg viewBox="0 0 560 300" role="group" aria-label="Interactive map of the amenity trail" id="trail-svg">
-              <path d="M40 250 C 120 240, 150 150, 240 140 S 400 190, 460 120 S 520 60, 530 40"
-                fill="none" stroke="#d99a3d" stroke-width="2" stroke-dasharray="7 7" opacity="0.7"/>
-              <g class="stop active" data-stop="0" role="button" tabindex="0" aria-label="Stop 1: The Lodge">
-                <circle cx="40" cy="250" r="9"/><text x="56" y="255">01 · The Lodge</text>
-              </g>
-              <g class="stop" data-stop="1" role="button" tabindex="0" aria-label="Stop 2: Ridge pool">
-                <circle cx="240" cy="140" r="9"/><text x="256" y="145">02 · Ridge pool</text>
-              </g>
-              <g class="stop" data-stop="2" role="button" tabindex="0" aria-label="Stop 3: Basecamp gym">
-                <circle cx="460" cy="120" r="9"/><text x="380" y="100">03 · Basecamp gym</text>
-              </g>
-              <g class="stop" data-stop="3" role="button" tabindex="0" aria-label="Stop 4: The Overlook">
-                <circle cx="530" cy="40" r="9"/><text x="428" y="34">04 · The Overlook</text>
-              </g>
-            </svg>
-          </div>
-          <div class="trail-info" aria-live="polite">
-            <span class="idx" id="trail-idx">Stop 01 of 04</span>
-            <h3 id="trail-name">The Lodge</h3>
-            <p id="trail-desc">Double-height great room with a stone fireplace, coffee bar, and work nooks — the living room your apartment doesn't need to be.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="plans">
-      <div class="wrap">
-        <div class="plans-head fade">
-          <div>
-            <span class="kicker">Residences</span>
-            <h2 style="font-size: clamp(2rem, 4.4vw, 3.1rem)">Pick your elevation.</h2>
-          </div>
-          <div class="toggle" role="group" aria-label="Filter floor plans">
-            <button type="button" aria-pressed="true" data-filter="all">All</button>
-            <button type="button" aria-pressed="false" data-filter="1">1 Bed</button>
-            <button type="button" aria-pressed="false" data-filter="2">2 Bed</button>
-          </div>
-        </div>
-        <div class="plan-cards fade">
-          <article class="pcard on" data-beds="1">
-            <h3>Juniper</h3>
-            <p class="spec">1 bed · 1 bath · 764 sq ft</p>
-            <ul class="feat">
-              <li>Gas fireplace standard</li>
-              <li>Mountain-side balcony</li>
-              <li>Quartz + white oak kitchen</li>
-            </ul>
-            <p class="rent">From $1,780</p>
-            <a class="btn btn--out" href="#basecamp">Check availability</a>
-          </article>
-          <article class="pcard on" data-beds="2">
-            <h3>Ponderosa</h3>
-            <p class="spec">2 bed · 2 bath · 1,150 sq ft</p>
-            <ul class="feat">
-              <li>Corner glass, dual exposure</li>
-              <li>Deep-soak tub + rain shower</li>
-              <li>Gear closet with boot dryer</li>
-            </ul>
-            <p class="rent">From $2,340</p>
-            <a class="btn btn--out" href="#basecamp">Check availability</a>
-          </article>
-          <article class="pcard on" data-beds="2">
-            <h3>Granite</h3>
-            <p class="spec">2 bed + den · 2.5 bath · 1,420 sq ft</p>
-            <ul class="feat">
-              <li>Top floor, vaulted ceilings</li>
-              <li>180° Catalina panorama</li>
-              <li>Private two-car garage</li>
-            </ul>
-            <p class="rent">From $2,980</p>
-            <a class="btn btn--out" href="#basecamp">Check availability</a>
-          </article>
-        </div>
-      </div>
-    </section>
 
     <section id="gallery" style="padding-top: 0">
       <div class="wrap">
@@ -369,115 +265,21 @@
         </div>
         <div class="climb fade">
           <figure class="c1">
-            <img src="../assets/img/sonoran-path.jpg" alt="Desert path at the base of the amenity trail" loading="lazy">
+            <img src="../../assets/img/sonoran-path.jpg" alt="Desert path at the base of the amenity trail" loading="lazy">
             <figcaption>The trail, stop one</figcaption>
           </figure>
           <figure class="c2">
-            <img src="../assets/img/foothills-community.jpg" alt="Residences stepping up the foothills" loading="lazy">
+            <img src="../../assets/img/foothills-community.jpg" alt="Residences stepping up the foothills" loading="lazy">
             <figcaption>Buildings two &amp; three</figcaption>
           </figure>
           <figure>
-            <img src="../assets/img/ridge-goldenhour.jpg" alt="The ridge glowing at golden hour above the community" loading="lazy">
+            <img src="../../assets/img/ridge-goldenhour.jpg" alt="The ridge glowing at golden hour above the community" loading="lazy">
             <figcaption>The Overlook at seven</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="vt" id="tour-virtual">
-      <div class="wrap">
-        <div class="section-head fade">
-          <span class="kicker">Virtual tour</span>
-          <h2>Hike it from your couch.</h2>
-        </div>
-        <div class="vt-frame fade">
-          <img src="../assets/img/foothills-community.jpg" alt="" aria-hidden="true" loading="lazy">
-          <button class="vt-play" type="button" id="vt-play" aria-label="Begin the virtual tour">
-            <span>
-              <span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-              <span id="vt-label">Start the walkthrough</span>
-            </span>
-          </button>
-        </div>
-        <p class="vt-note">The full 3D walkthrough embeds here at launch — Lodge to Overlook, every plan.</p>
-      </div>
-    </section>
-
-    <section class="base" id="basecamp">
-      <div class="wrap">
-        <div class="section-head fade">
-          <span class="kicker">Basecamp</span>
-          <h2>Start your ascent.</h2>
-          <p>Tours daily, applications reviewed same-day, keys when you're ready.</p>
-        </div>
-        <div class="base-grid fade">
-          <form id="lead-form" novalidate>
-            <div class="duo2">
-              <div>
-                <label for="l-name">Name</label>
-                <input id="l-name" name="name" type="text" autocomplete="name" required>
-              </div>
-              <div>
-                <label for="l-email">Email</label>
-                <input id="l-email" name="email" type="email" autocomplete="email" required>
-              </div>
-            </div>
-            <div class="duo2">
-              <div>
-                <label for="l-plan">Residence</label>
-                <select id="l-plan" name="plan">
-                  <option>Juniper — 1 bed</option>
-                  <option>Ponderosa — 2 bed</option>
-                  <option>Granite — 2 bed + den</option>
-                  <option>Guide me</option>
-                </select>
-              </div>
-              <div>
-                <label for="l-movein">Move-in month</label>
-                <select id="l-movein" name="movein">
-                  <option>August 2026</option>
-                  <option>September 2026</option>
-                  <option>October 2026</option>
-                  <option>Later / flexible</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label for="l-notes">Notes</label>
-              <textarea id="l-notes" name="notes" placeholder="Pets, garages, which peak you want out the window."></textarea>
-            </div>
-            <div class="row2">
-              <button class="btn btn--amber" type="submit">Schedule a Tour</button>
-              <button class="btn btn--out" style="border-color: #efeae2; color: #efeae2" type="submit" data-intent="apply">Apply Now</button>
-            </div>
-            <p class="base-confirm" role="status" id="base-confirm">Received — your guide will confirm by email before the day is out.</p>
-          </form>
-          <div class="base-side">
-            <h3>Why residents climb</h3>
-            <p>
-              Ten degrees cooler than the valley floor on a July afternoon,
-              pine smell after monsoon rain, and stars the city never shows you.
-            </p>
-            <div class="prio">
-              <b>Summer priority list</b>
-              <p>Granite plans release two at a time. Join the list and you'll hear about each release a day before it goes public.</p>
-            </div>
-            <p style="margin-top: 1.4rem; font-size: 0.95rem; color: rgba(239, 234, 226, 0.75)">
-              The Lodge desk · daily 9–6 · (520) 555-0311<br>
-              <a href="mailto:climb@summitpeak.demo" style="color: var(--amber)">climb@summitpeak.demo</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="base-map fade" role="img" aria-label="Map placeholder showing Summit Peak on the Catalina Highway">
-          <div class="map-pin">
-            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-            <span>Summit Peak</span>
-          </div>
-          <p class="map-note">Interactive Google Map embeds here at launch — Catalina Hwy mile 0 · Sabino Canyon 12 min · downtown 20 min</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -508,65 +310,6 @@
         fades.forEach(function (el) { el.classList.add("in"); });
       }
 
-      /* amenity trail */
-      var STOPS = [
-        ["The Lodge", "Double-height great room with a stone fireplace, coffee bar, and work nooks — the living room your apartment doesn't need to be."],
-        ["Ridge pool", "A heated pool set against the granite, open year-round. Snow on the peaks, steam off the water — January's best trick."],
-        ["Basecamp gym", "Strength floor, climbing wall, and a gear room with wax bench and bike stands. Train down here, prove it up there."],
-        ["The Overlook", "The trail's summit: fire tables, telescope, and the city glittering three hundred feet below. Reserve it for your best nights."]
-      ];
-      var stops = document.querySelectorAll(".trail-map .stop");
-      var nameEl = document.getElementById("trail-name");
-      var descEl = document.getElementById("trail-desc");
-      var idxEl = document.getElementById("trail-idx");
-      var pick = function (i) {
-        stops.forEach(function (s) { s.classList.toggle("active", Number(s.dataset.stop) === i); });
-        nameEl.textContent = STOPS[i][0];
-        descEl.textContent = STOPS[i][1];
-        idxEl.textContent = "Stop 0" + (i + 1) + " of 04";
-      };
-      stops.forEach(function (s) {
-        s.addEventListener("click", function () { pick(Number(s.dataset.stop)); });
-        s.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(Number(s.dataset.stop)); }
-        });
-      });
-
-      /* plan filter */
-      var toggles = document.querySelectorAll(".toggle button");
-      var cards = document.querySelectorAll(".pcard");
-      toggles.forEach(function (t) {
-        t.addEventListener("click", function () {
-          toggles.forEach(function (x) { x.setAttribute("aria-pressed", String(x === t)); });
-          var f = t.dataset.filter;
-          cards.forEach(function (c) {
-            c.classList.toggle("on", f === "all" || c.dataset.beds === f);
-          });
-        });
-      });
-
-      /* virtual tour */
-      document.getElementById("vt-play").addEventListener("click", function () {
-        document.getElementById("vt-label").textContent = "The walkthrough embeds here at launch";
-      });
-
-      /* lead form */
-      var form = document.getElementById("lead-form");
-      var confirmMsg = document.getElementById("base-confirm");
-      var intent = "tour";
-      form.querySelectorAll("button[type=submit]").forEach(function (b) {
-        b.addEventListener("click", function () { intent = b.dataset.intent === "apply" ? "apply" : "tour"; });
-      });
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (!form.name.value.trim()) { form.name.focus(); return; }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { form.email.focus(); return; }
-        confirmMsg.textContent = intent === "apply"
-          ? "Application link sent — check your email to finish in about ten minutes."
-          : "Received — your guide will confirm by email before the day is out.";
-        confirmMsg.classList.add("show");
-        form.reset();
-      });
     })();
   </script>
 </body>
