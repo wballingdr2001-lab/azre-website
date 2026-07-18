@@ -225,6 +225,18 @@
     .lead-map .map-pin span { display: block; margin-top: 0.25rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; background: var(--sky); color: var(--void); border-radius: 4px; padding: 0.3rem 0.6rem; }
     .lead-map .map-note { position: absolute; bottom: 0.8rem; left: 0.9rem; right: 0.9rem; font-size: 0.8rem; color: var(--dim); }
 
+    /* draggable panorama */
+    .pano { margin-top: clamp(2.5rem, 5vw, 4rem); }
+    .pano-head { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .pano-head h3 { font-size: 1.3rem; }
+    .pano-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pano-btns button { font: inherit; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); background: var(--void-2); border: 1px solid var(--hairline); border-radius: 4px; padding: 0.45rem 0.9rem; cursor: pointer; transition: all 0.18s var(--ease); }
+    .pano-btns button:hover, .pano-btns button.on { color: var(--sky-hot); border-color: var(--sky); }
+    .pano-view { overflow: hidden; border-radius: 10px; border: 1px solid var(--hairline); height: clamp(260px, 40vw, 420px); cursor: grab; }
+    .pano-view:active { cursor: grabbing; }
+    .pano-view img { height: 100%; width: 200%; max-width: none; object-fit: cover; filter: hue-rotate(10deg) saturate(0.9) brightness(0.85); user-select: none; transition: transform 0.5s var(--ease); }
+    .pano-view.dragging img { transition: none; }
+
     footer { border-top: 1px solid var(--hairline); padding-block: 2.5rem 5.5rem; font-size: 0.9rem; color: var(--dim); font-weight: 300; }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
     .demo-note { max-width: 62ch; }
@@ -282,6 +294,22 @@
           </button>
         </div>
         <p class="vt-note">The full 3D walkthrough embeds here at launch — lobby to sky lounge, every plan type.</p>
+
+        <div class="pano fade">
+          <div class="pano-head">
+            <h3>Meanwhile — pan the view from floor 12</h3>
+            <div class="pano-btns" role="group" aria-label="Jump to a compass view">
+              <button type="button" data-pan="0" class="on">West</button>
+              <button type="button" data-pan="0.35">Downtown</button>
+              <button type="button" data-pan="0.7">The Catalinas</button>
+              <button type="button" data-pan="1">East</button>
+            </div>
+          </div>
+          <div class="pano-view" id="pano" tabindex="0" role="img" aria-label="Draggable panorama over downtown Tucson — drag or use arrow keys to pan">
+            <img src="../../assets/img/tucson-skyline-sunset.jpg" alt="" draggable="false">
+          </div>
+          <p class="vt-note" style="text-align: left">Drag the skyline, or use the arrow keys — full 360° captures replace this panorama at launch.</p>
+        </div>
       </div>
     </section>
 
@@ -320,6 +348,42 @@
         document.getElementById("vt-label").textContent = "The 3D walkthrough embeds here at launch";
       });
 
+    })();
+  </script>
+<script>
+    (function () {
+      var view = document.getElementById("pano");
+      if (!view) return;
+      var img = view.querySelector("img");
+      var x = 0, startX = 0, imgX = 0, dragging = false;
+      var maxShift = function () { return Math.max(0, img.offsetWidth - view.offsetWidth); };
+      var setX = function (nx) {
+        x = Math.min(0, Math.max(-maxShift(), nx));
+        img.style.transform = "translateX(" + x + "px)";
+      };
+      view.addEventListener("pointerdown", function (e) {
+        dragging = true; startX = e.clientX; imgX = x;
+        view.classList.add("dragging"); view.setPointerCapture(e.pointerId);
+      });
+      view.addEventListener("pointermove", function (e) {
+        if (dragging) setX(imgX + (e.clientX - startX));
+      });
+      var stop = function () { dragging = false; view.classList.remove("dragging"); };
+      view.addEventListener("pointerup", stop);
+      view.addEventListener("pointercancel", stop);
+      view.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { e.preventDefault(); setX(x + 80); }
+        if (e.key === "ArrowRight") { e.preventDefault(); setX(x - 80); }
+      });
+      var btns = document.querySelectorAll(".pano-btns button");
+      btns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          btns.forEach(function (o) { o.classList.remove("on"); });
+          b.classList.add("on");
+          setX(-maxShift() * parseFloat(b.dataset.pan));
+        });
+      });
+      if (img.complete) setX(0); else img.addEventListener("load", function () { setX(0); });
     })();
   </script>
 </body>

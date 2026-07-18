@@ -214,6 +214,16 @@
     .base-map .map-pin span { display: block; margin-top: 0.25rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; background: var(--amber); color: var(--bark); border-radius: 3px; padding: 0.3rem 0.6rem; }
     .base-map .map-note { position: absolute; bottom: 0.8rem; left: 0.9rem; right: 0.9rem; font-size: 0.8rem; color: rgba(239, 234, 226, 0.6); }
 
+    /* four seasons */
+    .seasons { padding-top: 0; }
+    .season-frame img { width: 100%; height: clamp(300px, 48vw, 460px); object-fit: cover; border-radius: 6px; transition: filter 0.9s var(--ease); }
+    .season-meta { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; margin-top: 1.1rem; }
+    .season-meta p { font-style: italic; color: var(--bark-2); max-width: 52ch; }
+    .season-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .season-btns button { font: inherit; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pine); background: none; border: 1.5px solid var(--pine); border-radius: 3px; padding: 0.5rem 1rem; cursor: pointer; transition: all 0.2s var(--ease); }
+    .season-btns button:hover { background: var(--stone-2); }
+    .season-btns button[aria-pressed="true"] { background: var(--pine); color: var(--stonewash); }
+
     footer { padding-block: 2.5rem; font-size: 0.9rem; color: var(--bark-2); border-top: 1px solid var(--line); }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
     .demo-note { max-width: 62ch; }
@@ -275,6 +285,28 @@
       </div>
     </div>
 
+    <section class="seasons" aria-label="The mountain through the seasons">
+      <div class="wrap">
+        <div class="section-head fade">
+          <span class="kicker">Four seasons</span>
+          <h2>One address, four mountains.</h2>
+          <p>The light changes with the calendar; the ten degrees of relief never do.</p>
+        </div>
+        <div class="season-frame fade">
+          <img id="season-img" src="../../assets/img/foothills-community.jpg" alt="The community beneath the Catalinas, its light shifting with the chosen season" width="1280" height="853">
+          <div class="season-meta">
+            <p id="season-copy">Palo verdes bloom yellow along the wash, and mornings open cool enough for the long loop before work.</p>
+            <div class="season-btns" role="group" aria-label="Choose a season">
+              <button type="button" data-season="spring" aria-pressed="true">Spring</button>
+              <button type="button" data-season="summer" aria-pressed="false">Summer</button>
+              <button type="button" data-season="monsoon" aria-pressed="false">Monsoon</button>
+              <button type="button" data-season="winter" aria-pressed="false">Winter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section aria-label="Explore the community">
       <div class="wrap">
         <div class="section-head fade">
@@ -322,6 +354,33 @@
         fades.forEach(function (el) { el.classList.add("in"); });
       }
 
+    })();
+  </script>
+<script>
+    (function () {
+      var img = document.getElementById("season-img");
+      if (!img) return;
+      var copy = document.getElementById("season-copy");
+      var SEASONS = {
+        spring: { f: "saturate(1.18) hue-rotate(-8deg)",
+          t: "Palo verdes bloom yellow along the wash, and mornings open cool enough for the long loop before work." },
+        summer: { f: "sepia(0.22) saturate(1.25) brightness(1.05) contrast(1.02)",
+          t: "The valley bakes; up here the pines hold their shade and the pool stays ten degrees more reasonable." },
+        monsoon: { f: "saturate(0.82) brightness(0.8) contrast(1.15)",
+          t: "Afternoon thunderheads build over the ridge, the creosote turns the air electric, and every balcony becomes a front-row seat." },
+        winter: { f: "saturate(0.62) brightness(1.08) hue-rotate(14deg) contrast(0.98)",
+          t: "Snow dusts the granite by morning and is gone by noon — close enough to touch, never close enough to shovel." }
+      };
+      img.style.filter = SEASONS.spring.f;
+      document.querySelectorAll(".season-btns button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.querySelectorAll(".season-btns button").forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
+          b.setAttribute("aria-pressed", "true");
+          var s = SEASONS[b.dataset.season];
+          img.style.filter = s.f;
+          copy.textContent = s.t;
+        });
+      });
     })();
   </script>
 </body>
